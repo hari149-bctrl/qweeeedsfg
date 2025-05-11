@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../Images/Brainy voyage LOGO_processed.png" type="image/x-icon">
+    <title>Brainy Voyage</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXMDY8YDN0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SXMDY8YDN0');
+    </script>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <div class="bottom-nav">
+        <a href="../home/" class="nav-item active">
+            <img src="../Images/Navbarimages/roofing.png" class="bottom-logos">
+            <span class="bottom-names">Home</span>
+        </a>
+        <a href="../roadmaps/" class="nav-item">
+            <img src="../Images/Navbarimages/Road.png" class="bottom-logos">
+            <span class="bottom-names">Roadmaps</span>
+        </a>
+        <a href="../hiring/" class="nav-item">
+            <img src="../Images/Navbarimages/link.png" class="bottom-logos">
+            <span class="bottom-names">Links</span>
+        </a>
+        <a href="../resume/" class="nav-item">
+            <img src="../Images/Navbarimages/resume.png" class="bottom-logos">
+            <span class="bottom-names">Resume</span>
+        </a>
+        <a href="../materials/" class="nav-item">
+            <img src="../Images/Navbarimages/books.png" class="bottom-logos">
+            <span class="bottom-names">Materials</span>
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Brainy Voyage</h1>
+            <p class="tagline">Set sail with Brainy Voyage, where brilliance knows no bounds!</p>
+            <a href="#about" class="cta-button">Explore Now</a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="about-overlay"></div>
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Welcome to Brainy Voyage</h2>
+                <p>
+                    We are more than just a platform—we are a <span style="color: #ffbc0c; font-weight: bold;">movement</span>.  
+                    At <strong>Brainy Voyage</strong>, we provide top-tier  
+                    <span style="color: #ffbc0c; font-weight: bold;">study resources</span>,  
+                    <span style="color: #ffbc0c; font-weight: bold;">career guidance</span>, and  
+                    <span style="color: #ffbc0c; font-weight: bold;">placement materials</span>  
+                    to help you <strong>excel</strong> in your professional journey.
+                </p>
+                <p>
+                    Your future <strong>starts here</strong>.  
+                    Let’s <span style="color: #ffbc0c; font-weight: bold;">build</span>,  
+                    <span style="color: #ffbc0c; font-weight: bold;">grow</span>, and  
+                    <span style="color: #ffbc0c; font-weight: bold;">succeed</span> together.  
+                    🚀 <strong>Join us on this incredible journey!</strong>
+                </p>
+
+                <div class="social-links">
+                    <a target="_blank" rel="noopener noreferrer" href="https://WhatsApp.openinapp.co/Brainy_Voyage"><img src="../Images/Navbarimages/whatsapp.png" alt="WhatsApp"></a>
+                    <a target="_blank" rel="noopener noreferrer"  href="https://Insta.openinapp.co/Brainy_Voyage"><img src="../Images/Navbarimages/insta.png" alt="Instagram"></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://YouTube.openinapp.co/Brainy_Voyage"><img src="../Images/Navbarimages/youtube.png" alt="YouTube"></a>
+                </div>
+            </div>
+
+            <div class="about-image">
+                <img src="../Images/Brainy voyage LOGO_processed.png" alt="Brainy Voyage Logo">
+            </div>
+        </div>
+    </section>
+
+
+    <div class="contactFormContainer">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contact-form" onsubmit="sendMail(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+            
+                <button type="submit">Send Message</button>
+            </form>
+            <p id="statusMessage"></p>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p>🚀 Powered by <strong>Brainy Voyage</strong> ❤️<br> 2025 © All rights reserved</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

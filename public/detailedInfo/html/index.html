@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../Images/Brainy voyage LOGO_processed.png" type="image/x-icon">
+    <title>BRAINY VOYAGE</title>
+    <link rel="stylesheet" href="../html/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+</head>
+<body>
+
+    <div class="bottom-nav">
+        <a href="../../home/" class="bottom-nav-item active">
+            <img src="../../Images/Navbarimages/roofing.png" class="bottom-logos">
+            <span class="bottom-names">Home</span>
+        </a>
+        <a href="../../roadmaps/" class="bottom-nav-item">
+            <img src="../../Images/Navbarimages/Road.png" class="bottom-logos">
+            <span class="bottom-names">Roadmaps</span>
+        </a>
+        <a href="../../hiring/" class="bottom-nav-item">
+            <img src="../../Images/Navbarimages/link.png" class="bottom-logos">
+            <span class="bottom-names">Links</span>
+        </a>
+        <a href="../../resume/" class="bottom-nav-item">
+            <img src="../../Images/Navbarimages/resume.png" class="bottom-logos">
+            <span class="bottom-names">Resume</span>
+        </a>
+        <a href="../../materials/" class="bottom-nav-item">
+            <img src="../../Images/Navbarimages/books.png" class="bottom-logos">
+            <span class="bottom-names">Materials</span>
+        </a>
+    </div>
+
+
+    <div class="mainContainer">
+        
+        <div class="sidebar">
+            <button class="nav-item" data-section="intro">What is HTML?</button>
+            <button class="nav-item" data-section="intro1">HTML Structure</button>
+            <button class="nav-item" data-section="intro2">Browser Rendering</button>
+            <button class="nav-item" data-section="intro3">Character Encoding</button>
+            <button class="nav-item" data-section="intro4">Comments</button>
+            <button class="nav-item" data-section="intro5">Text Formatting</button>
+            <button class="nav-item" data-section="intro6">Links</button>
+            <button class="nav-item" data-section="intro7">Lists</button>
+            <button class="nav-item" data-section="intro8">Images</button>
+            <button class="nav-item" data-section="intro9">Tables</button>
+            <button class="nav-item" data-section="intro10">Forms</button>
+            <button class="nav-item" data-section="intro11">SHA</button>
+            <button class="nav-item" data-section="intro12">HTML Entities</button>
+            <button class="nav-item" data-section="intro13">Forms Advanced</button>
+            <button class="nav-item" data-section="intro14">Graphics & Animations</button>
+            <button class="nav-item" data-section="intro15">API's</button>
+        </div>
+        
+        <div class="content">
+            
+            <section id="intro" class="content-section">
+                <div class="intro-container">
+                    <h1>🚀 Welcome to the World of HTML!</h1>
+                    <p>Ever wondered how websites are built? Meet <strong>HTML (HyperText Markup Language)</strong> – the backbone of every webpage you visit!</p>
+            
+                    <div class="highlight-box">
+                        <h2>📜 A Quick History</h2>
+                        <p>Invented in <strong>1989</strong> by <span class="highlight">Tim Berners-Lee</span>, HTML started as a simple way to link documents. Now, it powers the entire internet! 🌍</p>
+                    </div>
+            
+                    <h2>⚡ What Can HTML Do?</h2>
+                    <ul class="feature-list">
+                        <li>✅ Create headings, paragraphs, and lists</li>
+                        <li>✅ Add images, videos, and audio</li>
+                        <li>✅ Build forms and interactive elements</li>
+                        <li>✅ Work with CSS & JavaScript to make websites dynamic</li>
+                    </ul>
+            
+                    <blockquote class="quote">
+                        “HTML is the skeleton, CSS is the skin, and JavaScript is the brain of the web.” 💡
+                    </blockquote>
+            
+                    <h2>🛠 Your First HTML Code!</h2>
+                    <p>Try writing this in your editor and open it in a browser:</p>
+            
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor1')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor1')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+
+                                <div id="editor1" class="editor"></div>
+                        </div>
+                    </div>
+                    
+            
+                    <p>Congratulations! You just wrote your first HTML page! 🎉</p>
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container">
+                        <a href="#intro1" class="next-btn">HTML Structure</a>
+                    </div>
+                    
+
+                </div>
+            </section>
+            
+            
+            <section id="intro1" class="content-section">
+                <div class="intro-container">
+                    <h2>🩻 Basic HTML Structure</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>
+                            Think of an HTML page like a sandwich! 🍔 <br>
+                            The top bun is the <strong>&lt;html&gt;</strong> tag—it holds everything together. <br>
+                            The middle part has the <strong>&lt;head&gt;</strong> 
+                            (<span class="highlight">like a menu with instructions</span>) and the 
+                            <strong>&lt;body&gt;</strong> 
+                            (<span class="highlight">the yummy part where all the content goes, like text and pictures</span>). <br>
+                            The bottom bun is the <strong>&lt;/html&gt;</strong> tag, which closes everything up!
+                        </p>                      
+                    </div>
+
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor2')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor2')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor2" class="editor"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <h2>📌 <code>&lt;!DOCTYPE html&gt;</code></h2>
+                    <ul class="feature-list">
+                        <li>✅ Declares the document type and version of HTML. In modern web development, <code>&lt;!DOCTYPE html&gt;</code> is used for HTML5. </li>
+                        <li>✅ It ensures the browser correctly interprets the document.</li>
+                    </ul>
+                    <blockquote class="quote">
+                        This is like telling the world, "Hey! This is an HTML5 page!" It’s like putting a sign on your house saying, “This is a home!
+                    </blockquote>
+                    
+                    
+                    <br>
+                    <h2>🌍 <code>&lt;html&gt;</code></h2>
+                    <p>The root element of an HTML document. Contains all other HTML elements.</p>
+                    <h3>🔖 Attributes:</h3>
+                    <ul class="feature-list">
+                        <li>🔤 <code>lang="en"</code> - Defines the language of the document (e.g., "en" for English, "fr" for French).</li>
+                    </ul>
+                    <blockquote class="quote">
+                        This is the big box that holds everything inside the webpage, just like how walls hold everything inside your house. 🏠
+                    </blockquote>
+
+
+
+
+                    <section>
+                        <br>
+                        <h2>🧠 <code>&lt;head&gt;</code></h2>
+                        <p>Contains metadata and links to external resources (CSS, JavaScript, etc.). It does not display content on the webpage.</p>
+                        <h3>📌 Common Elements:</h3>
+                        <ul class="feature-list">
+                            <li>📖 <code>&lt;title&gt;</code> - Sets the title of the webpage.</li>
+                            <li>🔣 <code>&lt;meta charset="UTF-8"&gt;</code> - Defines character encoding.</li>
+                            <li>📱 <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> - Ensures responsive design.</li>
+                            <li>🎨 <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code> - Links an external CSS file.</li>
+                            <li>⚡ <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> - Links an external JavaScript file.</li>
+                        </ul>
+                        <blockquote class="quote">This is like the control room of the house! It has the title of the page and other secret instructions that help the page work. <br>
+                           ➡️ "&lt;title> My Cool Page &lt;/title>" – This is the name of your house! 🏡 When you open your page in a browser, this is what appears in the tab at the top.
+                        </blockquote>
+                    </section>
+                    
+                    <section>
+                        <br>
+                        <h2>🖥️ <code>&lt;body&gt;</code></h2>
+                        <p>Contains all visible content like text, images, videos, and interactive elements.</p>
+                        <blockquote class="quote">
+                            This is where all the fun stuff goes—texts, pictures, buttons, and more! 🎨 Like the rooms in your house where you eat, play, and sleep.
+                        </blockquote>
+                    </section>
+                    
+                    <section>
+                        <br>
+                        <h2>🔤 Headings (<code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>)</h2>
+                        <ul class="feature-list">
+                            <li>🔷 <code>&lt;h1&gt;</code> - Main heading.</li>
+                            <li>🔶 <code>&lt;h2&gt;</code> - Subheading.</li>
+                            <li>🔹 <code>&lt;h3&gt;</code> - Section heading.</li>
+                            <li>🔸 <code>&lt;h4&gt;</code> - Subsection heading.</li>
+                            <li>🔺 <code>&lt;h5&gt;</code> - Minor section heading.</li>
+                            <li>🔻 <code>&lt;h6&gt;</code> - Least important heading.</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <br>
+                        <h2>✍️ Paragraphs (<code>&lt;p&gt;</code>)</h2>
+                        <p>Example:</p>
+                        <p>📝 This is a paragraph of text.</p>
+                    </section>
+
+
+                    <section>
+                        <br>
+                        <blockquote class="quote">Conclusion</blockquote>
+                        <ul class="feature-list">
+                            <li>1️⃣ &lt;!DOCTYPE html> – This is like telling the world, "Hey! This is an HTML5 page!" It’s like putting a sign on your house saying, “This is a home!”</li>
+                            <li>2️⃣ &lt;html> – This is the big box that holds everything inside the webpage, just like how walls hold everything inside your house. 🏠</li>
+                            <li>3️⃣ &lt;head> – This is like the control room of the house! It has the title of the page and other secret instructions that help the page work.
+                            </li>
+                            <li>4️⃣ &lt;title>My Cool Page &lt;/title> – This is the name of your house! 🏡 When you open your page in a browser, this is what appears in the tab at the top.</li> 
+                            <li>5️⃣ &lt;body> – This is where all the fun stuff goes—texts, pictures, buttons, and more! 🎨 Like the rooms in your house where you eat, play, and sleep.</li>
+                            <li>6️⃣ &lt;h1>Hello, world! &lt;/h1> – This is a big headline (like a sign on your door) that says Hello, world! 👋</li>
+                            <li>7️⃣ &lt;p>Welcome to my website.&lt;/p> – This is a paragraph of text, like a note left on the table for visitors to read.</li>
+                            <li>8️⃣ &lt;/html> – This is the closing tag, like locking your house when you're done! 🔒</li>
+                        
+                        </ul>
+                    </section>
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro">What is HTML?</a>
+                        <a href="#intro2" class="next-btn">Browser Rendering</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="intro2" class="content-section">
+                <div class="intro-container">
+
+
+                    <h2>How Browsers Render HTML and CSS</h2>
+                    <div class="highlight-box">
+                        <h2>📜 A Quick Note</h2>
+                        <p>When you open an HTML page in a browser (like Chrome, Firefox, or Edge), the browser acts like a builder 🏗️ that takes the HTML code and turns it into a real webpage you can see and interact with.</p>
+    
+                    </div>
+                    <br>
+                    <h2>Step-by-Step: How Browsers Render HTML</h2>
+                    <blockquote class="quote">1️⃣ Browser Reads the HTML</blockquote>
+                    <ul class="feature-list">
+                        <li>👉 The browser starts at the top of your HTML file and reads it line by line, just like reading a book.</li>
+                        <li>👉 It follows all the instructions written inside the HTML tags.</li>
+                    </ul>
+                    <br>
+                    <blockquote class="quote">2️⃣ Builds the "DOM" (Document Object Model) 🏗️</blockquote>
+                    <ul class="feature-list">
+                        <li>👉 The browser turns the HTML code into a structure called the DOM (Document Object Model).</li>
+                        <li>👉 Think of the DOM as a blueprint or a family tree 🌳 of your webpage, showing how everything is connected.</li>
+                    </ul>
+                    <p>Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor3')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor3')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor3" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>👉 The browser sees that &lt;h1> is inside &lt;body>, so it places Hello, world! at the top.</li>
+                        <li>👉 Then, it places the &lt;p> tag right below it with the text inside.</li>
+                    </ul>
+
+                    <br>
+                    <blockquote class="quote">3️⃣ Applies CSS (Styles the Page) 🎨</blockquote>
+                    <ul class="feature-list">
+                        <li>🤔 If your page has CSS (colors, fonts, layouts), the browser applies those styles on top of the DOM.</li>
+                    </ul>
+                    <p>Example</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor4')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor4')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor4" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ Now, the h1 text becomes blue! 🟦</li>
+                    </ul>
+                    <br>
+                    <blockquote class="quote">4️⃣ Handles JavaScript (Makes it Interactive) ⚙️</blockquote>
+                    <ul class="feature-list">
+                        <li>👲 If your page has JavaScript (buttons, animations, pop-ups), the browser runs the JavaScript to make things interactive.</li>
+                    </ul>
+                    <p>Example</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor5')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor5')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor5" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>When you click the button, JavaScript runs and pops up a message saying "Hello!"</li>
+                    </ul>
+
+                    <br>
+                    <blockquote class="quote">5️⃣ Paints Everything on the Screen 🎥</blockquote>
+                    <ul class="feature-list">
+                        <li>✅ After processing the HTML, CSS, and JavaScript, the browser paints the final webpage onto your screen so you can see it!</li>
+                    </ul>
+
+                    <br>
+                    <blockquote class="quote">Conclusion</blockquote>
+                    <ul class="feature-list">
+                        <li>📖 Reads the HTML file.</li>
+                        <li>🏗️ Creates the DOM structure.</li>
+                        <li>🎨 Adds CSS to make it look nice.</li>
+                        <li>⚙️ Runs JavaScript for interactivity.</li>
+                        <li>🎥 Displays the final webpage on your screen!</li>
+                    </ul>
+                    <blockquote class="quote">And that’s how your browser renders a webpage! 🚀</blockquote>
+
+                    <br>
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro1">Structure</a>
+                        <a class="next-btn" href="#intro3">Ch Encoding</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="intro3" class="content-section">
+                <div class="intro-container">
+                    <h2>Character Encoding</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>Character encoding tells the browser how to read and display text on a webpage, including special characters like ©, ü, or emojis 😊.</p>
+                    </div>
+
+                    <br>
+                    <h2>How Character Encoding Works? 🏗️</h2>
+                    <blockquote class="quote">When you type Hello! 😊 in your HTML file, your computer doesn’t store letters or emojis. Instead, it stores numbers (called binary: 0s and 1s).</p></blockquote>
+                    <p>Example</p>
+                    <ul class="feature-list">
+                        <li>H = 72</li>
+                        <li>e = 101</li>
+                        <li>😊 = 128522</li>
+                    </ul>
+                    <p>👉 Now, the browser needs to know how to turn these numbers back into readable text!</p>
+                    <p>🥳 That’s where character encoding comes in! 🎉</p>
+
+                    <br>
+                    <h2>Common Types of Character Encoding</h2>
+                    <blockquote class="quote">1️⃣ UTF-8 (The Superhero! 🦸)</blockquote>
+                    <ul class="feature-list">
+                        <li>✅ Can display ALL languages, symbols, and emojis! 🌍</li>
+                        <li>✅ This is why it’s the best choice for websites today!</li>
+                    </ul>
+                    <p>Example in HTML</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor6')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor6')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor6" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">Why use it? It makes sure your page shows the right text, whether it's English, Arabic, Japanese, or even 🎙️🎨🚀!</blockquote>
+
+
+                    <br>
+                    <blockquote class="quote">2️⃣ ISO-8859-1 (The Old One 👴)</blockquote>
+                    <ul class="feature-list">
+                        <li>❌ Only supports Western European languages (like English, French, Spanish).</li>
+                        <li>❌ Can’t handle special symbols or emojis properly.</li>
+                        <li>👎 Not recommended anymore.</li>
+                    </ul>
+
+                    <br>
+                    <blockquote class="quote">3️⃣ UTF-16 (The Heavyweight 🏋️)</blockquote>
+                    <ul class="feature-list">
+                        <li>💪 Stores characters in bigger chunks (uses more space).</li>
+                        <li>🏋️ Mostly used in special cases (like certain programming languages).</li>
+                    </ul>
+
+
+                    <br>
+                    <blockquote class="quote">What Happens if You Use the Wrong Encoding? ❌</blockquote>
+                    <p>🤔 Imagine you open a book, but all the letters look broken! 📖💔</p>
+                    <p>Example:</p>
+                    <li>Instead of Café, you see CafÃ© – oh no! 😱</li>
+                    <p>👉 That happens when the browser doesn’t know the right encoding to use!</p>
+
+                    <br>
+                    <div class="highlight-box">
+                        <h2>Final Lesson: Always Use UTF-8! ✅</h2>
+                        <p>And now, your web page can speak every language in the world! 🌎🚀
+                        <br>Pretty cool, right? 😃</p>
+                    </div>
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro2">Rendering</a>
+                        <a class="next-btn" href="#intro4">Comments</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="intro4" class="content-section">
+                <div class="intro-container">
+                    <h2>Comments</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>HTML comments are notes written inside the code that the browser ignores when displaying the webpage. They are used to explain, organize, or temporarily disable parts of the code.</p>
+                    </div>
+                    <br>
+                    <h2>HTML Comments</h2>
+                    <blockquote class="quote">
+                        <p>🤔 Imagine you're drawing a big picture 🖍️, and you write little sticky notes 📝 next to parts of your drawing to explain them.</p>
+                        <p>😵 These notes help you remember things, but they don’t show up when someone looks at your final artwork! 🎨</p>
+                        <p>🤭 That’s exactly what HTML comments do! They let you write invisible notes inside your HTML code that only you (or other developers) can see! 👀</p>
+                    </blockquote>
+                    <br>
+                    <h2>How to Write a Comment? ✍️</h2>
+                    <p>In HTML, a comment looks like this:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor7')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor7')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor7" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">The browser ignores anything inside "&lt;!-- --&gt;", so it doesn’t appear on the webpage!</blockquote>
+
+                    <br>
+                    <h2>Why Use Comments? 🤔</h2>
+                    <ul class="feature-list">
+                        <li>✅ Explain Your Code (So you remember later!)</li>
+                        <li>✅ Hide Code Without Deleting It (For testing!)</li>
+                        <li>✅ Organize Large Code Files (Makes things neat!)</li>
+                    </ul>
+                    <br>
+                    <h2>What NOT to Do with Comments ❌</h2>
+                    <ul class="feature-list">
+                        <li>🚫 Don’t use comments for passwords or private info! (Site visitors can still see comments in the page source! 😨)</li>
+                        <li>🚫 Don’t overuse comments!</li>
+                    </ul>
+                    <br>
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>📌 HTML comments are invisible notes inside your code.</p>
+                        <p>📌 Use them to explain, organize, or hide code.</p>
+                        <p>📌 But don’t put sensitive info in comments!</p>
+                    </div>
+                    <p>Now, go add some secret notes to your HTML pages! 🤫✨</p>
+                
+                
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro3">CH encoding</a>
+                        <a class="next-btn" href="#intro5">Text Formatting</a>
+                    </div>
+                
+                </div>
+            </section>
+            
+            
+            <section id="intro5" class="content-section">
+                <div class="intro-container">
+                    <h2>Text & Formatting in HTML ✍️🎨</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>In HTML, we use text formatting tags to style, emphasize, or structure text on a webpage. These tags help make content <strong>bold, italic, underlined, or even look like code!</strong></p>
+                    </div>
+                    <br>
+                    <h2>1️⃣ Basic Text Formatting Tags</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tag</th>
+                                <th>Effect</th>
+                                <th>Example</th>
+                                <th>Output</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="copy-tag" onclick="copyTagToClipboard('<b>')">&lt;b&gt;</td>
+                                <td>Bold text</td>
+                                <td>&lt;b&gt;Bold Text&lt;/b&gt;</td>
+                                <td><b>Bold Text</b></td>
+                            </tr>
+                            <tr>
+                                <td class="copy-tag" onclick="copyTagToClipboard('<i>')">&lt;i&gt;</td>
+                                <td>Italic text</td>
+                                <td>&lt;i&gt;Italic Text&lt;/i&gt;</td>
+                                <td><i>Italic Text</i></td>
+                            </tr>
+                            <tr>
+                                <td class="copy-tag" onclick="copyTagToClipboard('<u>')">&lt;u&gt;</td>
+                                <td>Underlined text</td>
+                                <td>&lt;u&gt;Underlined Text&lt;/u&gt;</td>
+                                <td><u>Underlined Text</u></td>
+                            </tr>
+                            <tr>
+                                <td class="copy-tag" onclick="copyTagToClipboard('<s>')">&lt;s&gt;</td>
+                                <td>Strikethrough</td>
+                                <td>&lt;s&gt;Deleted Text&lt;/s&gt;</td>
+                                <td><s>Deleted Text</s></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <h1>2️⃣ Strong & Emphasis (Semantic Tags)</h1>
+                    <table>
+                        <tr>
+                            <th class="tag">Tag</th>
+                            <th class="effect">Effect</th>
+                            <th class="example">Example</th>
+                            <th class="output">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;strong&gt;</code></td>
+                            <td class="effect">🔥 Strong importance (like bold, but meaningful)</td>
+                            <td class="example"><code>&lt;strong&gt;Important!&lt;/strong&gt;</code></td>
+                            <td class="output"><strong>Important!</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;em&gt;</code></td>
+                            <td class="effect">✨ Emphasized text (like italic, but meaningful)</td>
+                            <td class="example"><code>&lt;em&gt;Pay attention&lt;/em&gt;</code></td>
+                            <td class="output"><em>Pay attention</em></td>
+                        </tr>
+                    </table>
+                    <blockquote class="quote">These tags improve SEO and accessibility! 🚀</blockquote>
+                    <p>📌 Why use &lt;strong> instead of &lt;b>?</p>
+                    <li>&lt;b> is just bold, but &lt;strong> means "important content" for search engines & screen readers!</li>
+
+
+                    <br>
+                    <h2>3️⃣ Monospace & Code Formatting</h2>
+                    <blockquote class="quote">👉 Used for displaying code snippets or keyboard inputs!</blockquote>
+                    <table>
+                        <tr>
+                            <th class="tag">Tag</th>
+                            <th class="effect">Effect</th>
+                            <th class="example">Example</th>
+                            <th class="output">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;code&gt;</code></td>
+                            <td class="effect">📟 Inline code</td>
+                            <td class="example"><code>&lt;code&gt;print("Hello")&lt;/code&gt;</code></td>
+                            <td class="output"><code>print("Hello")</code></td>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;pre&gt;</code></td>
+                            <td class="effect">🖥️ Preserves spaces & line breaks</td>
+                            <td class="example"><code>&lt;pre&gt;Line 1<br>Line 2&lt;/pre&gt;</code></td>
+                            <td class="output"><pre>Line 1
+                Line 2</pre></td>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;kbd&gt;</code></td>
+                            <td class="effect">⌨️ Keyboard input</td>
+                            <td class="example"><code>&lt;kbd&gt;Ctrl + C&lt;/kbd&gt;</code></td>
+                            <td class="output"><kbd>Ctrl + C</kbd></td>
+                        </tr>
+                    </table>
+
+
+                    <br>
+                    <h2>4️⃣ Subscript & Superscript</h2>
+                    <table>
+                        <tr>
+                            <th class="tag">Tag</th>
+                            <th class="effect">Effect</th>
+                            <th class="example">Example</th>
+                            <th class="output">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;sub&gt;</code></td>
+                            <td class="effect">📉 Subscript (small & below)</td>
+                            <td class="example"><code>H&lt;sub&gt;2&lt;/sub&gt;O</code></td>
+                            <td class="output">H<sub>2</sub>O</td>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;sup&gt;</code></td>
+                            <td class="effect">📈 Superscript (small & above)</td>
+                            <td class="example"><code>X&lt;sup&gt;2&lt;/sup&gt;</code></td>
+                            <td class="output">X<sup>2</sup></td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <h2>5️⃣ Text Wrapping & Line Breaks</h2>
+                    <table>
+                        <tr>
+                            <th class="tag">Tag</th>
+                            <th class="effect">Effect</th>
+                            <th class="example">Example</th>
+                            <th class="output">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;br&gt;</code></td>
+                            <td class="effect">🔄 Line break (new line)</td>
+                            <td class="example"><code>Hello&lt;br&gt;World!</code></td>
+                            <td class="output">Hello<br>World!</td>
+                        </tr>
+                        <tr>
+                            <td class="tag"><code>&lt;hr&gt;</code></td>
+                            <td class="effect">📏 Horizontal line (divider)</td>
+                            <td class="example"><code>&lt;hr&gt;</code></td>
+                            <td class="output"><hr></td>
+                        </tr>
+                    </table>
+
+
+                    <br>
+                    <p>Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor8')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor8')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor8" class="editor"></div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>✅ Use formatting tags to improve readability & accessibility.</p>
+                        <p>✅ Use semantic tags (&lt;strong>, &lt;em>) for SEO & screen readers.</p>
+                        <p>✅ Use &lt;code>, &lt;pre> for code, and &lt;blockquote>, &lt;cite> for quotes.</p>
+                    </div>
+                    <p>Now go and style your text like a pro! 🚀💡</p>
+                    <br>
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro4">Comments</a>
+                        <a class="next-btn" href="#intro6">Text Formatting</a>
+                    </div>
+
+                </div>
+            
+            </section>
+
+
+
+            <section id="intro6" class="content-section">
+                <div class="intro-container">
+                    <h2>Links & Navigation in HTML 🔗🚀</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>Imagine you're in a big playground 🎡 with lots of doors 🚪.</p>
+                        <p>Each door takes you to a different place—maybe a slide, a swing, or a candy shop! 🍭🏰</p>
+                        <p>HTML links work the same way! They are like doors that take you to different places on the internet! 🌍✨</p>
+                    </div>
+                    <p>In other words:</p>
+                    <blockquote class="quote">Links help users navigate between pages, sections, or even send emails/call someone. In HTML, we use the &lt;a> (anchor) tag to create links!</blockquote>
+
+                    <br>
+                    <h2>1️⃣ Anchor Tags (&lt;a>) – Internal & External Links</h2>
+                    <p>🔹Basic Syntax:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor9')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor9')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor9" class="editor"></div>
+                        </div>
+                    </div>
+                    <li>📌 This creates a clickable link to "brainyvoyage.com"!</li>
+                    
+                    
+                    <br>
+                    <h2>2️⃣ Open Links in a New Tab (target="_blank")</h2>
+                    <p>👉 By default, links open in the same tab. To open in a new tab, use: target="_blank"</p>
+                    <p>Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor10')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor10')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor10" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">⚠️ Security Tip: To prevent security risks, add rel="noopener noreferrer"</blockquote>
+                    <p>Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor11')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor11')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor11" class="editor"></div>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <h2>3️⃣ Link to Email & Phone (mailto: & tel:)</h2>
+                    <ul class="feature-list">
+                        <li>Some links don’t take you to a webpage—instead, they help you call someone or send an email!</li>
+                        <li>👉 If you want to Email a Friend or call your Dad. Here is how it is done</li>
+                    </ul>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor12')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor12')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor12" class="editor"></div>
+                        </div>
+                    </div>
+                    <li>✅ Email a Friend!</li>
+                    <li>✅ Call Your Dad!</li>
+
+                    <br>
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>✅ Links are like doors to other places! 🚪</p>
+                        <p>✅ target="_blank" opens a new tab 🪟</p>
+                        <p>✅ mailto: and tel: help send emails & make calls! 📞</p>
+                        <p>✅ Bookmark links let you jump to parts of the same page! 🎯</p>
+                    </div>
+                    <p>Now, go add some magic doors to your web pages! ✨🚪</p>
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro5">Text Formatting</a>
+                        <a class="next-btn" href="#intro7">Lists</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="intro7" class="content-section">
+                <div class="intro-container">
+                    <h2>Lists</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Notes</h2>
+                        <p>Imagine you’re making a shopping list 🛒 or a checklist for a treasure hunt 🏴‍☠️.</p>
+                        <p>HTML lists help you organize items just like a to-do list or a menu at a restaurant! 🍔🍕</p>
+                    </div>
+                    <p>In other words:</p>
+                    <blockquote class="quote">A list is a way to organize and group related items together.</blockquote>
+
+                    <br>
+                    <h2>1️⃣ Unordered Lists (&lt;ul> & &lt;li>) – Bullet Points 🔘</h2>
+                    <blockquote class="quote">This is like a shopping list 🛍️ where the order doesn’t matter!</blockquote>
+                    <p>Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor13')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor13')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor13" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ This shows up as:</p>
+                    <pre>•   Apples 🍏</pre>
+                    <pre>•   Bananas 🍌</pre>
+                    <pre>•   Chocolates 🍫</pre>
+
+
+                    <br>
+                    <h2>2️⃣ Ordered Lists (&lt;ol> & &lt;li>) – Numbered Lists 🔢</h2>
+                    <li>👉 This is for things that must be in order, like step-by-step instructions 📖.</li>
+                    <p>Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor14')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor14')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor14" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ This shows up as:</p>
+                    <pre>1. Wake up ⏰</pre>
+                    <pre>2. Brush teeth 🦷</pre>
+                    <pre>3. Eat breakfast 🍞</pre>
+                    <li>📌 The &lt;ol> means "ordered list" (numbers instead of bullets).</li>
+                    <li>📌 The &lt;li> means "list item" (each step in order).</li>
+
+
+                    <br>
+                    <h2>3️⃣ Definition Lists (&lt;dl>, &lt;dt>, &lt;dd>) – Like a Dictionary 📖</h2>
+                    <p>👉 This is for explaining words or terms, just like a mini dictionary! 📚</p>
+                    <p>Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor15')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor15')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor15" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ This shows up as:</p>
+                    <p>HTML</p>
+                    <p>🔹 HyperText Markup Language – the code for making websites.</p>
+                    <p>CSS</p>
+                    <p>🔹 Cascading Style Sheets – the code for making websites look cool!</p>
+
+                    <ul class="feature-list">
+                        <li>📌 The &lt;dl> means "definition list" (a list of explanations).</li>
+                        <li>📌 The &lt;dt> means "definition term" (the word being explained).</li>
+                        <li>📌 The &lt;dd> means "definition description" (the explanation).</li>
+                    </ul>
+
+
+                    <br>
+                    <h2>4️⃣ Nested Lists – Lists Inside Lists! 🏠➡️📋</h2>
+                    <p>Imagine you’re making a list of food, and you want to group fruits separately. 🍎🍌🍕</p>
+                    <p>Example:</p>
+
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor16')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor16')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor16" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>This shows up as:</p>
+                    <pre>• Fruits 🍎</pre>
+                    <pre>   • Apples 🍏</pre>
+                    <pre>   • Bananas 🍌</pre>
+                    <pre>• Snacks 🍪</pre>
+                    <pre>   • Chips 🍟</pre>
+                    <pre>   • Chocolate 🍫</pre>
+                    <li>📌 Lists can be inside lists! This is called nesting.</li>
+
+                    <br>
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>✅ Use &lt;ul> for bullet point lists 🛍️</p>
+                        <p>✅ Use &lt;ol> for numbered steps 🔢</p>
+                        <p>✅ Use &lt;dl> for definitions (like a dictionary) 📖</p>
+                        <p>✅ You can nest lists inside lists! 🏠</p>
+
+                    </div>
+                    <p>Now go make your own fun lists in HTML! 🚀📜</p>
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro6">Links</a>
+                        <a class="next-btn" href="#intro8">Images</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="intro8" class="content-section">
+                <div class="intro-container">
+                    <h2>Images & Multimedia 🎨📸🎥</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <strong>Imagine you're making a storybook 📖. A book without pictures, music, or videos would be boring, right? 😴</strong>
+                        <p>In HTML, we can add images, videos, and sounds to make websites fun and exciting! 🚀✨</p>
+                    </div>
+
+                    <br>
+                    <h2>1️⃣ Adding Images (&lt;img> & src, alt) 🖼️</h2>
+                    <blockquote class="quote">
+                        The &lt;img> tag is used to show a picture on a webpage!  
+                    </blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor17')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor17')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor17" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ What it does:</p>
+                    <ul class="feature-list">
+                        <li>👉 src="cat.png" – Tells the browser where the image is 🐱</li>
+                        <li>👉  alt="A cute cat" – This describes the image for blind users or if the image doesn’t load!</li>
+                    </ul>
+
+                    <br>
+                    <h2>2️⃣ Image Formats: PNG, JPG, SVG, GIF, WebP 📷</h2>
+                    <blockquote class="quote">⚡ Different types of images have different superpowers!</blockquote>
+                    <table>
+                        <tr>
+                            <th class="format">Format</th>
+                            <th class="best-for">Best for</th>
+                            <th class="special-feature">Special Feature</th>
+                        </tr>
+                        <tr>
+                            <td class="format"><code>JPG/JPEG</code></td>
+                            <td class="best-for">Photos 📸</td>
+                            <td class="special-feature">Small file size, but not transparent</td>
+                        </tr>
+                        <tr>
+                            <td class="format"><code>PNG</code></td>
+                            <td class="best-for">Logos & Transparent Images 🌟</td>
+                            <td class="special-feature">Supports transparency (no background!)</td>
+                        </tr>
+                        <tr>
+                            <td class="format"><code>SVG</code></td>
+                            <td class="best-for">Icons & Illustrations 🎨</td>
+                            <td class="special-feature">Doesn’t lose quality when resized!</td>
+                        </tr>
+                        <tr>
+                            <td class="format"><code>GIF</code></td>
+                            <td class="best-for">Animated Images 🎬</td>
+                            <td class="special-feature">Supports simple animations</td>
+                        </tr>
+                        <tr>
+                            <td class="format"><code>WebP</code></td>
+                            <td class="best-for">Modern Images 🚀</td>
+                            <td class="special-feature">Super small file size and high quality</td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <h2>3️⃣ Responsive Images (srcset) 📱🖥️</h2>
+                    <blockquote class="quote">Some images should change size depending on the device (phone, tablet, computer).</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor18')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor18')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor18" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">What happens?</blockquote>
+                    <ul class="feature-list">
+                        <li>🖥️ On a big screen, the large image loads</li>
+                        <li>📱 On a tablet, the medium image loads</li>
+                        <li>📞 On a phone, the small image loads</li>
+                    </ul>
+                    <blockquote class="quote">Why?</blockquote>
+                    <li>✅ This makes the website faster and saves data! 🚀</li>
+
+
+                    <br>
+                    <h2>4️⃣ Embedding Videos (&lt;video>) 🎥</h2>
+                    <blockquote class="quote">Want to add a video file directly to your page? Use the &lt;video> tag!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor19')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor19')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor19" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">✅ What this does:</blockquote>
+                    <ul class="feature-list">
+                        <li>controls – Adds play, pause, and volume buttons 🎵</li>
+                        <li>source – Tells the browser where the video is 🎬</li>
+                        <li>If the browser doesn’t support videos, it shows the text instead!</li>
+
+                    </ul>
+
+                    <br>
+                    <h2>5️⃣ Embedding Audio (&lt;audio>) 🎶🎼🎺</h2>
+                    <blockquote class="quote">✅ Want to play music or sounds? Use the &lt;audio> tag!</blockquote>
+                    <p>🔹 Example:</p>  
+                    
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor20')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor20')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor20" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">✅ What this does:</blockquote> 
+                    <ul class="feature-list">
+                        <li>🔊 controls – Adds play, pause, and volume buttons.</li>
+                        <li>🎼 source – Tells the browser where the sound is.</li>
+                    </ul>
+
+                    <br>
+                    <h2>6️⃣ YouTube & External Videos (&lt;iframe>) 🎞️</h2>
+                    <blockquote class="quote">Instead of uploading videos, you can embed YouTube videos using an &lt;iframe>!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor21')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor21')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor21" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">✅ Why use this?</blockquote>
+                    <ul class="feature-list">
+                        <li>💾 You don’t have to host the video (saves storage)!</li>
+                        <li>📺 Videos can be watched directly on your page!</li>
+                    </ul>
+                    <br>
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <strong>✅ Use &lt;img> for pictures 🖼️</strong>
+                        <strong>✅ Choose the right image format (JPG, PNG, SVG, GIF, WebP)! 🎨</strong>
+                        <strong>✅ Make images responsive with srcset 📱</strong>
+                        <strong>✅ Use &lt;video> to add videos directly 🎬</strong>
+                        <strong>✅ Use &lt;audio> to add music or sounds 🎵</strong>
+                        <strong>✅ Use &lt;iframe> to embed YouTube videos 📺</strong>
+                    </div>
+                    <p>Now go make your website fun with images & media! 🚀✨</p>
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro7">Lists</a>
+                        <a class="next-btn" href="#intro9">Tables</a>
+                    </div>
+
+
+
+                </div>
+            </section>
+
+
+            <section id="intro9" class="content-section">
+                <div class="intro-container">
+                    <h2>Tables in HTML</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <strong>Imagine you’re having lunch at a big table 🍕, and everything is nicely arranged – plates, forks, and cups!</strong>
+                    </div>
+                    <p>In other words</p>
+                    <blockquote class="quote">In HTML, tables help organize data into rows and columns, just like a real-life table! 🏆</blockquote>
+                    <br>
+                    <h2>1️⃣ Basic Table Structure (&lt;table>, &lt;tr>, &lt;td>) 📋</h2>
+                    <blockquote class="quote">A table is like a grid with rows and columns!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor22')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor22')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor22" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">✅ How it works:</blockquote>
+                    <ul class="feature-list">
+                        <li>🏠 &lt;table> – Starts the table </li>
+                        <li>📏 &lt;tr> – Creates a row </li>
+                        <li>📦 &lt;td> – Defines a cell (table data) </li>
+                    </ul>
+                    <blockquote class="quote">✅ What it looks like:</blockquote>
+                    <table>
+                        <tr>
+                            <td class="fruit">🍏 Apple</td>
+                            <td class="quantity">10</td>
+                        </tr>
+                        <tr>
+                            <td class="fruit">🍌 Banana</td>
+                            <td class="quantity">5</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <h2>2️⃣ Table Headings (<th>) 🏷️</h2>
+                    <blockquote class="quote">Headings make the table easier to understand!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor23')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor23')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor23" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">✅ Difference between &lt;th> and &lt;td>?</blockquote>
+                    <ul class="feature-list">
+                        <li>&lt;th> – Bold & Centered (used for headings).</li>
+                        <li>&lt;td> – Normal text (used for data).</li>
+                    </ul>
+                    <blockquote class="quote">✅ What it looks like:</blockquote>
+                    <table>
+                        <tr>
+                            <th class="fruit">Fruit</th>
+                            <th class="quantity">Quantity</th>
+                        </tr>
+                        <tr>
+                            <td class="fruit">🍏 Apple</td>
+                            <td class="quantity">10</td>
+                        </tr>
+                        <tr>
+                            <td class="fruit">🍌 Banana</td>
+                            <td class="quantity">5</td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <h2>3️⃣ Table Caption (&lt;caption>) 📝</h2>
+                    <blockquote class="quote">A caption describes what the table is about!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor24')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor24')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor24" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">✅ What happens?</blockquote>
+                    <p>The caption appears above the table like a title!</p>
+                    <blockquote class="quote">✅ What happens?</blockquote>
+                    <li>📌 Looks like this:</li>
+                    <table>
+                        <caption>🔹 Fruit Inventory</caption>
+                        <tr>
+                            <th class="fruit">Fruit</th>
+                            <th class="quantity">Quantity</th>
+                        </tr>
+                        <tr>
+                            <td class="fruit">🍏 Apple</td>
+                            <td class="quantity">10</td>
+                        </tr>
+                        <tr>
+                            <td class="fruit">🍌 Banana</td>
+                            <td class="quantity">5</td>
+                        </tr>
+                    </table>
+                    <br><br>
+                    <h2>4️⃣ Merging Cells (colspan, rowspan) 🔗</h2>
+                    <blockquote class="quote">Sometimes, we want one cell to be bigger and span across multiple columns or rows!</blockquote>
+                    <p>🔹 colspan (Merge Columns) 🏗️</p>
+                    <li>If we want one cell to take up multiple columns, use colspan.</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor25')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor25')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor25" class="editor"></div>
+                        </div>
+                    </div>
+                    <li>✅ "Fruits Inventory" takes up two columns!</li>
+                    <blockquote class="quote">📌 Looks like this:</blockquote>
+                    <table>
+                        <tr>
+                          <th class="column-fruit">Fruit</th>
+                          <th class="column-details">Details</th>
+                        </tr>
+                        <tr>
+                          <td class="fruit-name" rowspan="2">🍏 Apple</td>
+                          <td class="fruit-color">Red</td>
+                        </tr>
+                        <tr>
+                          <td class="fruit-color">Green</td>
+                        </tr>
+                    </table>
+
+                    <br><br>
+                    <h2>5️⃣ Table Styling (Borders, Backgrounds) 🎨</h2>
+                    <blockquote class="quote">👉 We can make tables look cool using CSS!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor26')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor26')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor26" class="editor"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <table style="border-collapse: collapse; width: 50%;">
+                        <tr>
+                          <th style="border: 2px solid black; padding: 10px; text-align: center; background-color: yellow;">Fruit</th>
+                          <th style="border: 2px solid black; padding: 10px; text-align: center; background-color: yellow;">Quantity</th>
+                        </tr>
+                        <tr>
+                          <td style="border: 2px solid black; padding: 10px; text-align: center;">🍏 Apple</td>
+                          <td style="border: 2px solid black; padding: 10px; text-align: center;">10</td>
+                        </tr>
+                        <tr>
+                          <td style="border: 2px solid black; padding: 10px; text-align: center;">🍌 Banana</td>
+                          <td style="border: 2px solid black; padding: 10px; text-align: center;">5</td>
+                        </tr>
+                    </table>
+                    <br><br>
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>✅ Use &lt;table> to create tables 📊</p>
+                        <p>✅ Use &lt;th> for bold headings 🔠</p>
+                        <p>✅ Use &lt;caption> to describe the table 📝</p>
+                        <p>✅ Use colspan & rowspan to merge cells 🔗</p>
+                        <p>✅ Style your table to make it look nice! 🎨</p>
+                    </div>
+                    <p>Now go make awesome tables on your website! 🚀🔥</p>
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro8">Images</a>
+                        <a class="next-btn" href="#intro10">Froms</a>
+                    </div>
+
+
+
+
+
+                </div>
+            
+            
+            </section>
+
+
+            <section id="intro10" class="content-section">
+                <div class="intro-container">
+                    <h2>Forms & User Input in HTML 📑⌨️</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>Imagine you're filling out a school form 🏫. You write your name, choose your favorite subject, and check the box to say "Yes, I love ice cream!" 🍦</p>
+
+                    </div>
+                    <p>In Other Words</p>
+                    <li>👉 In HTML, forms help collect information from users! 🎯</li>
+                    <br>
+                    <h2>1️⃣ Form Structure (&lt;form>) 📑</h2>
+                    <blockquote class="quote">A form is like a container that holds all the input fields!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor27')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor27')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor27" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">✅ Forms are used for signups, logins, feedback, and more!</blockquote>
+                    <br>
+                    <h2>2️⃣ Input Fields (&lt;input>) ⌨️</h2>
+                    <li>👉 Forms have different types of input fields where users can enter information!</li>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor28')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor28')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor28" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ What happens?</p>
+                    <li>type="text" – Creates a box to type text 📝</li>
+                    <li>placeholder="Enter your name" – Shows hint text inside the box</li>
+                    <br>
+                    <blockquote class="quote">🛠️ Common Input Types:</blockquote>
+                    <table class="styled-table">
+                        <tr>
+                          <th class="table-header">Input Type</th>
+                          <th class="table-header">What It Does</th>
+                        </tr>
+                        <tr>
+                          <td class="table-cell">text</td>
+                          <td class="table-cell">Enter plain text ✍️</td>
+                        </tr>
+                        <tr>
+                          <td class="table-cell">password</td>
+                          <td class="table-cell">Hides text (•••••) 🔒</td>
+                        </tr>
+                        <tr>
+                          <td class="table-cell">email</td>
+                          <td class="table-cell">Requires a valid email 📧</td>
+                        </tr>
+                        <tr>
+                          <td class="table-cell">number</td>
+                          <td class="table-cell">Accepts only numbers 🔢</td>
+                        </tr>
+                        <tr>
+                          <td class="table-cell">date</td>
+                          <td class="table-cell">Select a date 📅</td>
+                        </tr>
+                        <tr>
+                          <td class="table-cell">color</td>
+                          <td class="table-cell">Choose a color 🎨</td>
+                        </tr>
+                      </table>
+                      <br>
+                      <h2>3️⃣ Labels (&lt;label>) 🎤</h2>
+                      <blockquote class="quote">👉 Labels tell users what to enter in an input field!</blockquote>
+                      <p>🔹 Example:</p>
+                      <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor29')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor29')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor29" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Why use labels?</p>
+                    <li>👉 Clicking the label selects the input field</li>
+                    <li>👉 Helps with accessibility (for blind users)</li>
+
+
+                    <br>
+                    <h2>4️⃣ Textarea (&lt;textarea>) 📝</h2>
+                    <blockquote class="quote">A &lt;textarea> is used for long text, like writing a message!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor30')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor30')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor30" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Why use &lt;textarea>?</p>
+                    <li>👉 It allows multiple lines of text!</li>
+                    <li>👉 Perfect for comments, reviews, and feedback!</li>
+
+                    <br>
+                    <h2>5️⃣ Dropdown (&lt;select> & &lt;option>) 🔽</h2>
+                    <blockquote class="quote">Dropdowns let users pick one option from a list!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor31')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor31')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor31" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Why use dropdowns?</p>
+                    <li>👉 Saves space on the page!</li>
+                    <li>👉 Users can only select one option!</li>
+
+                    <br>
+                    <h2>6️⃣ Radio Buttons & Checkboxes ✅🔘</h2>
+                    <p>👉 Radio buttons let users pick one option, while checkboxes let them select multiple!</p>
+                    <blockquote class="quote">🔘 Radio Buttons (Choose One)</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor32')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor32')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor32" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Why use radio buttons?</p>
+                    <li>🤭 Users can only pick one option in a group!</li>
+                    <br>
+                    <blockquote class="quote">✅ Checkboxes (Choose Multiple)</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor33')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor33')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor33" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Why use checkboxes?</p>
+                    <li>👉 Users can select multiple options!</li>
+
+
+                    <br>
+                    <h2>7️⃣ Buttons (&lt;button> & &lt;input type="submit">)</h2>
+                    <blockquote class="quote">Buttons send the form when clicked!</blockquote>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor34')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor34')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor34" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>🤔 Types of buttons:</p>
+                    <li>✅ &lt;button> – A normal button</li>
+                    <li>✅ &lt;input type="submit"> – A submit button</li>
+
+                    <br>
+                    <h2>8️⃣ Form Validation (HTML5 Required, Pattern)</h2>
+                    <blockquote class="quote">Forms should not allow users to enter wrong data!</blockquote>
+                    <p>🔹 Required Fields (required)</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor35')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor35')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor35" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ User must fill in this field before submitting!</p>
+
+                    <br>
+                    <p>🔹 Pattern Matching (pattern)</p>
+                    <blockquote class="quote">We can use patterns to allow only specific inputs!</blockquote>
+                    <p>🔹 Example (Only Numbers):</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor36')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor36')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor36" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Why use validation?</p>
+                    <li>👉 Stops users from entering incorrect data 🚫</li>
+                    <li>👉 Makes forms more secure & user-friendly</li>
+                    <br>
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>✅ Use &lt;form> to create a form 📝</p>
+                        <p>✅ Use &lt;input> for user input (text, email, password, etc.) ⌨️</p>
+                        <p>✅ Use &lt;label> to describe input fields 🎤</p>
+                        <p>✅ Use &lt;textarea> for long text (messages, comments) 📝</p>
+                        <p>✅ Use &lt;select> for dropdown choices 🔽</p>
+                        <p>✅ Use radio buttons for one choice & checkboxes for multiple ✅🔘</p>
+                        <p>✅ Use &lt;button> to submit the form 🔘</p>
+                        <p>✅ Use validation (required, pattern) to check input! ✅</p>
+
+
+                    </div>
+
+                    <p>Now go create amazing forms on your website! 🚀🔥</p>
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro9">Tables</a>
+                        <a class="next-btn" href="#intro11">SHA</a>
+                    </div>
+
+                </div>
+            
+            
+            
+            
+            </section>
+
+
+            <section id="intro11" class="content-section">
+                <div class="intro-container">
+                    <h2>Semantic HTML & Accessibility 🌍♿</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>🤔 Imagine you have a LEGO house 🏠. Instead of using random LEGO blocks everywhere, you use special blocks for doors 🚪, windows 🪟, and walls 🧱. This helps everyone understand the house better!</p>
+                        <p>💪 Semantic HTML does the same thing for websites! It uses meaningful tags, so both people and computers (like search engines and screen readers) understand the content better! 🏆</p>
+                    </div>
+
+
+                    <h2>1️⃣ What is Semantic HTML? 🤔</h2>
+                    <blockquote class="quote">👉 "Semantic" means "having meaning."</blockquote>
+                    <li>Normal HTML uses basic tags like &lt;div> and &lt;span>, but Semantic HTML uses tags that describe the content!</li>
+                    <p>🔹 Example (Bad HTML 🤢)</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor37')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor37')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor37" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>🔹 Example (Good Semantic HTML 🎉)</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor38')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor38')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor38" class="editor"></div>
+                        </div>
+                    </div>
+                    <blockquote class="quote">✅ Why use Semantic HTML?</blockquote>
+                    <li>Easier to read & understand 📖</li>
+                    <li>Better for SEO (Google loves it! 💙)</li>
+                    <li>Helps screen readers & accessibility tools 🦻</li>
+
+                    <br>
+                    <h2>2️⃣ Important Semantic Tags 🏷️</h2>
+                    <p>📌 &lt;header> – The Top Section</p>
+                    <li>👉 Like the title of a book 📖, it appears at the top of a page!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor39')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor39')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor39" class="editor"></div>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <p>📌 &lt;nav> – The Navigation Menu</p>
+                    <li>👉 This is the menu to help users move around the site! 🚀</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor40')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor40')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor40" class="editor"></div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <p>📌 &lt;main> – The Main Content</p>
+                    <li>👉 The most important part of the page! It contains the actual content users came for!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor41')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor41')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor41" class="editor"></div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <p>📌 &lt;section> – Organizing Content</p>
+                    <li>👉 Groups related content together, like chapters in a book! 📚</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor42')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor42')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor42" class="editor"></div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <p>📌 &lt;article> – Standalone Content</p>
+                    <li>👉 Used for blog posts, news articles, or stories!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor43')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor43')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor43" class="editor"></div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <p>📌 &lt;aside> – Side Content</p>
+                    <li>👉 Extra info like ads, related articles, or sidebars!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor44')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor44')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor44" class="editor"></div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <p>📌 &lt;footer> – The Bottom Section</p>
+                    <li>👉 Like the credits at the end of a movie 🎬, it contains contact info, links, and copyrights!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor45')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor45')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor45" class="editor"></div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <h2>3️⃣ Accessibility Best Practices ♿</h2>
+                    <blockquote class="quote">Websites should be usable for everyone, including people with disabilities.</blockquote>
+                    <br>
+                    <p>🔹 Use alt for Images 🖼️</p>
+                    <li>👉 Blind users can’t see images, but screen readers can read the alt text!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor46')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor46')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor46" class="editor"></div>
+                        </div>
+                    </div>
+                    <li>✅ Write alt like this</li>
+                    <br><br>
+                    <p>📌 NEVER write alt like this: ❌</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor47')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor47')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor47" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>(This doesn't help anyone!)</p>
+
+                    <br>
+                    <p>🔹 Use aria-label for Extra Info 🏷️</p>
+                    <blockquote class="quote">👉 Helps screen readers understand what an element does!</blockquote>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor48')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor48')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor48" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Why use aria-label?</p>
+                    <li>Helps users who can’t see the button but use screen readers!</li>
+                    
+
+
+
+                    <p>🔹 Use title for Extra Hints 💡</p>
+                    <blockquote class="quote">👉 Shows a tooltip when users hover over something!</blockquote>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor49')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor49')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor49" class="editor"></div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <p>🔹 Use aria-describedby for Extra Explanation 🗣️</p>
+                    <li>👉 Helps describe an input field for users who need more info!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor50')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor50')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor50" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Why use aria-describedby?</p>
+                    <li>Helps people understand what to enter without confusion!</li>
+                    <br>
+
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>✅ Use Semantic Tags (&lt;header>, &lt;nav>, &lt;main>, &lt;footer>) 📖</p>
+                        <p>✅ Use alt for images to help blind users 🦻</p>
+                        <p>✅ Use aria-label & aria-describedby for better navigation ♿</p>
+                        <p>✅ Use title for extra hints 🎭</p>
+                    </div>
+                    <p>Now go make websites that are easy to read & accessible for everyone! 🚀🔥</p>
+
+
+
+
+
+
+
+
+
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro10">Forms</a>
+                        <a class="next-btn" href="#intro12">HTML Entities</a>
+                    </div>
+                </div>
+            
+            
+            
+            </section>
+
+
+            <section id="intro12" class="content-section">
+                <div class="intro-container">
+                    <h2>HTML Entities & Special Characters</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>Imagine you are writing a secret code 🕵️‍♂️, but some symbols are not allowed in normal text. HTML needs special codes to show certain characters correctly!</p>
+                        <p>These special codes are called HTML Entities! 🎉</p>
+                    </div>
+                    <br>
+                    <h2>1️⃣ What Are HTML Entities? 🤔</h2>
+                    <p>HTML doesn't understand some characters directly. For example:</p>
+                    <li>If you write &lt;, the browser thinks you’re starting a tag!</li>
+                    <li>If you write ", the browser might get confused with an attribute!</li>
+                    <blockquote class="quote">🔹 To fix this, we use HTML Entities (special codes that start with & and end with ;)</blockquote>
+
+                    <br>
+                    <h2>2️⃣ Common HTML Entities 📜</h2>
+                    <blockquote class="quote">📌 Less Than (&lt;) & Greater Than (>)</blockquote>
+                    <li>👉 Used in HTML tags, but we need a special code to show them in text!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor51')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor51')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor51" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Output:</p>
+                    <p>&lt;h1&gt;Hello&lt;/h1&gt;</p>
+
+                    <br>
+                    <p>📌 Ampersand (&)</p>
+                    <li>👉 Used in links and code, but HTML mistakes it for an entity if not escaped!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor52')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor52')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor52" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Output: &</p>
+
+                    <br>
+                    <p>📌 Double Quotes (") & Single Quotes (')</p>
+                    <li>👉 Used inside HTML attributes, but sometimes need to be escaped!</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor53')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor53')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor53" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Output: "Hello" 'World'</p>
+
+
+                    <br>
+                    <p>📌 Non-Breaking Space (&nbsp;)</p>
+                    <li>👉 Creates extra spaces (normal spaces collapse in HTML)</li>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor54')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor54')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor54" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Output: Hello World!</p>
+
+                    <br>
+                    <h2>3️⃣ Special Characters & Symbols 🎭</h2>
+                    <p>📌 Copyright, Trademark & Registered Symbols</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor55')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor55')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor55" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Output:</p>
+                    <p>&copy;   &trade;   &reg;</p>
+                    <br>
+                    <p>📌 Math Symbols ➕➖✖️</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor56')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor56')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor56" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Output:</p>
+                    <p>&plus;   &minus;   &times;   &divide;</p>
+                    
+                    <br>
+                    <p>📌 Arrows & Pointers ➡️⬆️⬇️⬅️</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor57')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor57')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor57" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Output:</p>
+                    <p>&rarr;   &larr;   &uarr;   &darr;
+                    </p>
+
+                    <br>
+                    <p>📌 Currency Symbols 💰</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor58')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor58')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor58" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>✅ Output:</p>
+                    <p>&euro;   &pound;   &yen;   &dollar; </p>
+
+                    <br>
+                    <h2>4️⃣ When to Use HTML Entities? 🧐</h2>
+                    <ul class="feature-list">
+                        <li>✅ When you need special characters that HTML might confuse (like <, >, &)</li>
+                        <li>✅ When writing non-breaking spaces (&nbsp;) to stop spaces from disappearing</li>
+                        <li>✅ When showing symbols (©, ™, €, →) without using Unicode</li>
+                    </ul>
+                    <p>Now go add cool symbols & escape characters in your HTML! 🚀🔥</p>
+
+
+
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro11">SHA</a>
+                        <a class="next-btn" href="#intro13">Forms Advanced</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="intro13" class="content-section">
+                <div class="intro-container">
+                    <h2>Advanced HTML Forms</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>Forms help users enter information on a webpage, like signing up or uploading files. Now, let's learn some cool advanced form features! 🚀</p>
+                    </div>
+                    <br>
+                    <h2>1️⃣ Hidden Inputs (<input type="hidden">) 🕵️‍♂️</h2>
+                    <blockquote class="quote">👉 Secret information that users can’t see, but the form sends it!</blockquote>
+                    <p>🔹 Example: (Storing a user ID without showing it)</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor59')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor59')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor59" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ The user only sees the name field, but the form also sends userID=12345!</li>
+                    </ul>
+
+                    <br>
+                    <h2>2️⃣ File Uploads (&lt;input type="file">) 📂📸</h2>
+                    <ul class="feature-list">
+                        <li>👉 Lets users upload files like images, PDFs, or videos!</li>
+                    </ul>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor60')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor60')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor60" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ The user can choose a file and upload it to the website!</li>
+                    </ul>
+
+                    <br>
+                    <h2>3️⃣ Datalist (&lt;datalist>) – Auto-Suggestions! 🎯</h2>
+                    <ul class="feature-list">
+                        <li>👉 Gives users a dropdown of suggestions while typing!</li>
+                    </ul>
+                    <p>🔹 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor61')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor61')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor61" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ The user types, and matching cities appear like magic! ✨</li>
+                    </ul>
+                    
+                    <br>
+                    <h2>4️⃣ Fieldsets & Legends (&lt;fieldset>, &lt;legend>) 📦</h2>
+                        <ul class="feature-list">
+                            <li>👉 Groups related fields inside a box with a title!</li>
+                        </ul>
+                        <p>🔹 Example:</p>
+                        <div class="code-wrapper">
+                            <div class="toolbar">
+                                <button class="run-btn" onclick="runCode('editor62')">▶ Run</button>
+                                <button class="copy-btn" onclick="copyCode('editor62')">📋 Copy</button>
+                            </div>
+                            <div class="code-container">
+                                <div id="editor62" class="editor"></div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>✅ The fields are inside a nice box with a legend title! 🎉</li>
+                        </ul>
+
+                        <br>
+                        <h2>5️⃣ Progress Bar (&lt;progress>) & Meter (&lt;meter>) 📊</h2>
+                        <blockquote class="quote">✅ Progress Bar – Shows Progress (0% to 100%)</blockquote>
+                        <p>👉 Example: (Loading progress bar)</p>
+                        <div class="code-wrapper">
+                            <div class="toolbar">
+                                <button class="run-btn" onclick="runCode('editor63')">▶ Run</button>
+                                <button class="copy-btn" onclick="copyCode('editor63')">📋 Copy</button>
+                            </div>
+                            <div class="code-container">
+                                <div id="editor63" class="editor"></div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>✅ Shows 50% progress of a task!</li>
+                        </ul>
+                        <br>
+                        <blockquote class="quote">✅ Meter – Shows a Value Within a Range</blockquote>
+                        <p>👉 Example: (Battery level indicator)</p>
+                        <div class="code-wrapper">
+                            <div class="toolbar">
+                                <button class="run-btn" onclick="runCode('editor64')">▶ Run</button>
+                                <button class="copy-btn" onclick="copyCode('editor64')">📋 Copy</button>
+                            </div>
+                            <div class="code-container">
+                                <div id="editor64" class="editor"></div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>✅ 70% battery level is shown visually! ⚡🔋</li>
+                        </ul>
+
+                        <br>
+                        <div class="highlight-box">
+                            <h2>Conclusion</h2>
+                            <p>✅ Hidden Inputs store secret data 🤫</p>
+                            <p>✅ File Uploads let users upload images, PDFs, etc. 📁</p>
+                            <p>✅ Datalist adds auto-suggestions 🔍</p>
+                            <p>✅ Fieldsets & Legends make forms organized 📦</p>
+                            <p>✅ Progress Bars & Meters show progress 📊</p>
+                        </div>
+                        <p>Now go build advanced forms like a pro! 🚀🔥</p>
+
+
+
+
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro12">Entities</a>
+                        <a class="next-btn" href="#intro14">Graphics & Animations</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="intro14" class="content-section">
+                <div class="intro-container">
+                    <h2>Graphics & Animations</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>Webpages can be more than just text—we can draw, animate, and show moving images! Let’s learn how! 🚀</p>
+                    </div>
+
+                    <br>
+                    <h2>1️⃣ &lt;canvas> – A Blank Drawing Board 🖌️</h2>
+                    <blockquote class="quote">👉 The &lt;canvas> element lets you draw shapes, lines, and animations using JavaScript!</blockquote>
+                    <p>🔹 Example: A Simple Red Square</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor65')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor65')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor65" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ This draws a red square inside the canvas! 🎨</li>
+                    </ul>
+                    
+                    <br>
+                    <h2>2️⃣ &lt;svg> – Super Sharp Graphics! 🏆</h2>
+                    <blockquote class="quote">👉 SVG (Scalable Vector Graphics) draws shapes that never get blurry when resized!</blockquote>
+                    <p>🔹 Example: A Circle</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor66')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor66')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor66" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ This draws a blue-outlined circle with a light blue fill! 🔵</li>
+                    </ul>
+
+                    <br>
+                    <h2>3️⃣ Embedding GIFs & Animations 🎬</h2>
+                    <blockquote class="quote">👉 GIFs & videos can make your webpage come to life!</blockquote>
+                    <p>🔹 Example: Adding a GIF</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor67')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor67')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor67" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ This shows an animated GIF that loops forever!</li>
+                    </ul>
+
+                    <br>
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>✅ &lt;canvas> lets you draw & animate with JavaScript! 🖌️</p>
+                        <p>✅ &lt;svg> creates sharp, scalable graphics! 🏆</p>
+                        <p>✅ GIFs & animations make pages fun! 🎬</p>
+                    </div>
+                    <p>Now go make your website move & shine! 🚀🔥</p>
+
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro13">Forms Advanced</a>
+                        <a class="next-btn" href="#intro15">API's</a>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </section>
+
+
+            <section id="intro15" class="content-section">
+                <div class="intro-container">
+                    <h2>HTML APIs & Advanced Topics</h2>
+                    <div class="highlight-box">
+                        <h2>📜 Quick Note</h2>
+                        <p>APIs (Application Programming Interfaces) let websites do cool things like finding your location, storing data, or running tasks in the background. Let’s explore some fun ones! 🎉6</p>
+                    </div>
+
+                    <br>
+                    <h2>1️⃣ Geolocation API 🌍📍 (Find Your Location!)</h2>
+                    <blockquote class="quote">👉 The Geolocation API helps websites find where you are (with permission!).</blockquote>
+                    <p>🔹 Example: Get User’s Location</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor68')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor68')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor68" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ Click the button, and your location appears! 📍</li>
+                    </ul>
+
+                    <br>
+                    <h2>2️⃣ Drag & Drop API 🎯 (Move Stuff Around!)</h2>
+                    <blockquote class="quote">👉 This lets you drag things and drop them somewhere on the page!</blockquote>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor69')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor69')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor69" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ Drag the image into the box to drop it! 🎨</li>
+                    </ul>
+
+                    <br>
+                    <h2>3️⃣ Web Storage 🗂️ (Remember Stuff!)</h2>
+                    <blockquote class="quote">👉 Websites can save data in the browser using LocalStorage and SessionStorage!</blockquote>
+                    <p>🔹 Example: Save & Show Name</p>
+                    <div class="code-wrapper">
+                        <div class="toolbar">
+                            <button class="run-btn" onclick="runCode('editor70')">▶ Run</button>
+                            <button class="copy-btn" onclick="copyCode('editor70')">📋 Copy</button>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor70" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>✅ Enter a name, refresh the page, and the name stays saved! 🎯</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h2>Conclusion</h2>
+                        <p>✅ Geolocation API – Finds your location! 🌍</p>
+                        <p>✅ Drag & Drop API – Lets you move stuff! 🎯</p>
+                        <p>✅ Web Storage – Saves data in your browser! 🗂️</p>
+                    </div>
+                    <p>Now go build super smart, interactive websites! 🚀🔥</p>
+
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container2">
+                        <a class="next-btn" href="#intro14">Forms Advanced</a>
+                        <a class="next-btn" href="#intro16">Projects</a>
+                    </div>
+
+
+
+                </div>
+            </section>
+
+
+        </div>
+
+    </div>
+
+    <script>console.log("Script running before the import")</script>
+    <script src="script.js"></script>
+    
+</body>
+</html>

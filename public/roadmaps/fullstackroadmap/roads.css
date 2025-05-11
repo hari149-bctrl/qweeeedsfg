@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sauce+One&display=swap');
+
+*{
+    font-family: 'Open Sauce One', sans-serif;
+    user-select: none;
+}
+
+:root{
+    --background-color: #203141;
+    --background-color-deap: #142231;
+}
+body{
+    background-color: var(--background-color);
+}
+body {
+    margin: 0;
+    padding-bottom: 60px; /* Ensure content doesn’t hide behind the navbar */
+    
+}
+svg {
+    /* width: 100%; */
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-family: 'Open Sauce One', sans-serif !important;
+    
+    /* overflow: scroll; */
+    /* padding: 0px 20px 0px 20px; */
+}
+
+
+
+
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--background-color-deap);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 13px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top: 1px solid;
+    border-top-color: rgb(40, 216, 247);
+}
+
+.nav-item {
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 3px;
+    min-width: 150px;
+    border-radius: 10px;
+    color: white;
+}
+.nav-item:hover{
+    .bottom-names{
+        color: rgb(40, 216, 247);
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.nav-item.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.nav-item:hover {
+    color: #bbb;
+}
+.bottom-logos{
+    width: 25px;
+    user-select: none;
+}
+.bottom-names{
+    font-size: 10px;
+    user-select: none;
+    font-weight: 600;
+}
+
+@media (max-width:700px) {
+    .bottom-logos{
+        width: 20px;
+    }
+    .bottom-names{
+        font-size: 10px;
+        font-weight: 600;
+    }
+    .nav-item{
+        min-width: fit-content;
+    }
+    
+}
+
+footer {
+    background: var(--background-color-deap);
+    color: #ffffff;
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.svgcontainer{
+    width: 50%;
+}
+.containerIn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+svg text{
+    font-family: 'Open Sauce One', sans-serif !important;
+    fill: black;
+}
+
+
+@media (max-width:700px) {
+    .bottom-logos{
+        width: 20px;
+    }
+    .bottom-names{
+        font-size: 10px;
+        font-weight: 600;
+    }
+    .nav-item{
+        min-width: fit-content;
+    }
+    
+    hr{
+        display: none;
+    }
+    .svgcontainer{
+        display: block;
+        width: 100%;
+        
+        /* border: 1px solid pink; */
+        /* background-color: #bbb; */
+        /* padding-left: 13px; */
+        /* padding-bottom: 30px; */
+        font-family: 'Open Sauce One', sans-serif;
+    }
+    .svgSystem{
+        display: none;
+    }
+    svg text{
+        font-family: 'Open Sauce One', sans-serif !important;
+        fill: black;
+    }
+    footer{
+        padding: 1px;
+    }
+}

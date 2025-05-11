@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../Images/Brainy voyage LOGO_processed.png" type="image/x-icon">
+    <title>BRAINY VOYAGE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docx@7.1.0/build/index.min.js"></script>
+    <link rel="stylesheet" href="Resume.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXMDY8YDN0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SXMDY8YDN0');
+    </script>
+</head>
+<body>
+    
+
+    <div class="bottom-nav">
+        <a href="../home/" class="nav-item active">
+            <img src="../Images/Navbarimages/roofing.png" class="bottom-logos">
+            <span class="bottom-names">Home</span>
+        </a>
+        <a href="../roadmaps/" class="nav-item">
+            <img src="../Images/Navbarimages/Road.png" class="bottom-logos">
+            <span class="bottom-names">Roadmaps</span>
+        </a>
+        <a href="../hiring/" class="nav-item">
+            <img src="../Images/Navbarimages/link.png" class="bottom-logos">
+            <span class="bottom-names">Links</span>
+        </a>
+        <a href="../resume/" class="nav-item">
+            <img src="../Images/Navbarimages/resume.png" class="bottom-logos">
+            <span class="bottom-names">Resume</span>
+        </a>
+        <a href="../materials" class="nav-item">
+            <img src="../Images/Navbarimages/books.png" class="bottom-logos">
+            <span class="bottom-names">Materials</span>
+        </a>
+    </div>
+
+
+    <!-- Resumemain container -->
+    <div class="Resume-Main-Container">
+        
+        <p class="Fillheader">˚ ༘♡ ⋆｡˚ Fill The Details ˚ ༘♡ ⋆｡˚</p><br>
+        <p style="text-align: center; color: red;">Hover on the emoji's for tips</p><br>
+        <form id="resumeForm">
+            
+            <!-- Header content -->
+            <div class="Main-section">
+                <div class="basicDataContainers">
+                    <div class="label-names">
+                        <label for="name">Full Name</label>
+                        <p class="confusion-btn" title="Please!, don't you remember your name tooooo🤯. Ok follow this format --- 'First name(your name) Last name(Your family name)'">🤷</p>
+                    </div>
+                    <input type="text" id="name" oninput="updatePreview()" placeholder="First name & family name" required>
+                </div>
+
+                <div class="basicDataContainers">
+                    <div class="label-names">
+                        <label for="name">Address</label>
+                        <p class="confusion-btn" title="Don't write it with door number also bro. Just write --> City, State">🛐</p>
+                    </div>
+                    <input type="text" id="address" oninput="updatePreview()" placeholder="City, State. Eg., Anantapur, AndhraPradesh" required>
+                </div>
+
+                <div class="basicDataContainers">
+                    <div class="label-names">
+                        <label for="name">Phone Number</label>
+                        <p class="confusion-btn" title="I won't give it to other's bro. it is just for placing it in the resume">📲</p>
+                    </div>
+                    <input type="text" id="phone" oninput="updatePreview()" placeholder="+91 12345 67890" required>
+                </div>
+
+                <div class="basicDataContainers">
+                    <div class="label-names">
+                        <label for="name">Email</label>
+                        <p class="confusion-btn" title="Enter your email">✉️</p>
+                    </div>
+                    <input type="email" id="email" oninput="updatePreview()" required placeholder="brainyvoyage.complaints@gmail.com">
+                </div>
+            </div>
+            <!-- Header content ended -->
+    
+            <!-- Education container started -->
+            <div>
+                <label for="education">Education Details</label>
+                <div id="educationContainer">
+                    <button style="margin-top: 10px;" type="button" onclick="addEducation()">Add New Education</button>
+                </div>
+            </div>
+    
+            <label for="education">Experience</label>
+            <div id="experienceContainer">
+                <button type="button" onclick="addExperience()">Add New Experience</button>
+                <!-- <textarea id="experience" placeholder="Enter bullet points separated by a new line"></textarea><br><br> -->
+            </div>
+            
+            <label for="education">Projects</label>
+            <div id="universityContainer">
+                <button  type="button" onclick="addUniversityProject()">Add University Project</button>
+            </div>
+
+            <label for="education">Activities</label>
+            <div id="activitiesContainer">
+                <button type="button" onclick="addActivitiesContainer()">Add Activities</button>
+            </div>
+            
+            <div class="label-names">
+                <label for="technicalSkills">Technical Skills</label>
+                <p class="confusion-btn" title="Programming skills. Don't lie in this bro">💻</p>
+            </div>
+            <input type="text" id="technicalSkills" oninput="updatePreview()" required placeholder="HTML5, CSS3">
+    
+            <div class="label-names">
+                <label for="verbalLanguages">Verbal Languages</label>
+                <p class="confusion-btn" title="English, Hindi, Telugu <-- write in that format( , separated values)">🗣️</p>
+            </div>
+            <input type="text" id="verbalLanguages" oninput="updatePreview()" required placeholder="English, Hindi, Telugu">
+        
+            
+            <div class="label-names">
+                <label for="certificates">Certificates</label>
+                <p class="confusion-btn" title="JavaScript course (Udemy), Internship in web development (Oasis 1 – month), Full stack java
+                (Consensus Academy), Responsive Web Designing (Free code camp), JavaScript (Free code camp)">🗣️</p>
+            </div>
+            <input type="text" id="certificates" oninput="updatePreview()" required placeholder="JavaScript course (Udemy), JavaScript (Free code camp)">
+            
+
+            <div class="label-names">
+                <label for="hobbies">Hobbies</label>
+                <p class="confusion-btn" title="Most of the lies reside in this.. --> Playing chess, Listening Music, Watching sci-fi series, Swimming, riding bike">🏓</p>
+            </div>
+            <input type="text" id="hobbies" oninput="updatePreview()" required placeholder="Playing chess, Listening Music, Watching sci-fi series, Swimming, riding bike">
+    
+    
+            <!-- Word creation button -->
+            <button type="button" onclick="generateResume()">Download Resume as PDF</button>
+        </form>
+    
+    
+        <!-- Resume preview -->
+        <div id="resumePreview" style="display: none;">
+            <h2>Live Resume Preview</h2>
+            <p class="center" id="previewName">Your Name</p>
+            <p class="centerSub" id="previewContact">Your address | Your Phone | Your Email</p>
+            <hr>
+    
+    
+            <div class="educationContainer">
+                <h3>EDUCATION</h3>
+                <hr>
+            </div>
+    
+            <div class="experienceContainer">
+                <h3>WORK EXPERIENCE - INTERNSHIPS</h3>
+                <hr>
+            </div>
+    
+        </div>
+    </div>
+
+
+    <hr>
+    <footer>
+        <p>🚀 Powered by <strong>Brainy Voyage</strong> ❤️<br> 2025 © All rights reserved</p>
+    </footer>
+
+
+    <script src="Resume.js"></script>
+</body>
+</html>

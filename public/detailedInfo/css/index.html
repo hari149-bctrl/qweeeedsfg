@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../Images/Brainy voyage LOGO_processed.png" type="image/x-icon">
+    <title>BRAINY VOYAGE</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+</head>
+<body>
+    <div class="mainContainer">
+        
+        <div class="sidebar">
+            <button class="nav-item" data-section="intro">CSS Basics</button>
+            <button class="nav-item" data-section="cssToHtml">CSS to HTML</button>
+
+        </div>
+
+
+        <div class="content">
+            <section id="intro" class="content-section">
+                <div class="intro-container">
+                    <h1>🎨 Welcome to the World of CSS!</h1>
+                    <blockquote class="quote">Ever wondered how websites look so stylish? Meet <strong>CSS (Cascading Style Sheets)</strong> – the magic behind colors, layouts, and animations that bring webpages to life!</blockquote>
+
+                    <ul class="feature-list">
+                        <li>✅ <strong>Style elements</strong> – Change colors, fonts, and sizes effortlessly.</li>
+                        <li>✅ <strong>Control layouts</strong> – Arrange elements precisely with flexbox, grid, and more.</li>
+                        <li>✅ <strong>Add animations</strong> – Make elements fade, move, or transform smoothly.</li>
+                        <li>✅ <strong>Improve responsiveness</strong> – Ensure your website looks great on all screen sizes.</li>
+                    </ul>
+
+                    <p>With CSS, you can turn a plain webpage into a visually stunning masterpiece! 🎨✨</p>
+
+
+
+                    <br>
+                    <h2>How CSS Works? (Selectors & Declarations)</h2>
+                    <p>CSS follows a simple rule:</p>
+                    <blockquote class="quote">👉 "Find something, change something!"</blockquote>
+
+                    <p>It looks like this</p>
+                    
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="copy-btn" onclick="copyCode('editor1')" id="btn">
+                                    <img src="../../Images/Code/copy.png" width="25">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor1" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>Let’s decode it! 🕵️‍♂️</p>
+                    <ul class="feature-list">
+                        <li>1️⃣ Selector → Who are we styling? (Example: h1, p, button)</li>
+                        <li>2️⃣ Property → What are we changing? (Example: color, font-size)</li>
+                        <li>3️⃣ Value → What should it be? (Example: red, 24px)</li>
+                    </ul>
+                    <p>📌 Example:</p>
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="copy-btn" onclick="copyCode('editor2')" id="btn">
+                                    <img src="../../Images/Code/copy.png" width="25">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor2" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>🔹 h1 → Hey, I’m styling all the headings!</li>
+                        <li>🔹 color → I want to change the text color!</li>
+                        <li>🔹 blue → Make it blue! 🔵</li>
+                    </ul>
+                    <p>📌 Another Example:</p>
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="copy-btn" onclick="copyCode('editor3')" id="btn">
+                                    <img src="../../Images/Code/copy.png" width="25">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor3" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>🔹 p → Hey, I’m styling all paragraphs!</li>
+                        <li>🔹 font-size → I want to change the text size!</li>
+                        <li>🔹 20px → Make it big! 📏</li>
+                    </ul>
+
+                    <br>
+                    <h2>Adding CSS to HTML (3 Ways!)</h2>
+                    <blockquote class="quote">CSS can be added in three ways!</blockquote>
+                    <p>1️⃣ Inline CSS (Quick Paint 🎨)</p>
+                    <li>💡 Adding CSS inside HTML tags!</li>
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="copy-btn" onclick="copyCode('editor4')" id="btn">
+                                    <img src="../../Images/Code/copy.png" width="25">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor4" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>📌 Use when? For tiny changes! (Not for big projects)</p>
+                    <br>
+                    <p>2️⃣ Internal CSS (Styling Inside the HTML 💻)</p>
+                    <blockquote class="quote">💡 CSS goes inside a &lt;style> tag in HTML head</blockquote>
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="copy-btn" onclick="copyCode('editor5')" id="btn">
+                                    <img src="../../Images/Code/copy.png" width="25">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor5" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>📌 Use when? Styling a single page</p>
+                    <br>
+                    <p>3️⃣ External CSS (Best Method! ✅)</p>
+                    <blockquote class="quote">💡 CSS is in a separate file!</blockquote>
+                    <ul class="feature-list">
+                        <li>1️⃣ Create a file called styles.css</li>
+                        <li>2️⃣ Write this inside:</li>
+                    </ul>
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="copy-btn" onclick="copyCode('editor6')" id="btn">
+                                    <img src="../../Images/Code/copy.png" width="25">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor6" class="editor"></div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li>3️⃣ Link it inside your HTML like this:</li>
+                    </ul>
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="copy-btn" onclick="copyCode('editor7')" id="btn">
+                                    <img src="../../Images/Code/copy.png" width="25">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor7" class="editor"></div>
+                        </div>
+                    </div>
+                    <p>📌 Use when? For big websites with many pages</p>
+
+                    <br>
+                    <h2>🛠 💡 LIVE DEMO: Try This!</h2>
+                    <p>Run this in a file and see the magic! ✨</p>
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="run-btn" onclick="runCode('editor8')" id="btn"><img src="../../Images/Code/play.png" width="35"></button>
+                                <button class="copy-btn" onclick="copyCode('editor8')" id="btn"><img src="../../Images/Code/copy.png" width="25 "></button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor8" class="editor"></div>
+                        </div>
+                    </div>
+        
+
+                    <p>Congratulations! You just wrote your first HTML page! 🎉</p>
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container">
+                        <a href="#cssToHtml" class="next-btn">HTML Structure</a>
+                    </div>
+                    
+
+                </div>
+            </section>
+
+
+            <section id="cssToHtml" class="content-section">
+                <div class="intro-container">
+                    <h1>🚀 Welcome to the World of HTML!</h1>
+                    <p>Ever wondered how websites are built? Meet <strong>HTML (HyperText Markup Language)</strong> – the backbone of every webpage you visit!</p>
+            
+                    <div class="highlight-box">
+                        <h2>📜 A Quick History</h2>
+                        <p>Invented in <strong>1989</strong> by <span class="highlight">Tim Berners-Lee</span>, HTML started as a simple way to link documents. Now, it powers the entire internet! 🌍</p>
+                    </div>
+            
+                    <h2>⚡ What Can HTML Do?</h2>
+                    <ul class="feature-list">
+                        <li>✅ Create headings, paragraphs, and lists</li>
+                        <li>✅ Add images, videos, and audio</li>
+                        <li>✅ Build forms and interactive elements</li>
+                        <li>✅ Work with CSS & JavaScript to make websites dynamic</li>
+                    </ul>
+            
+                    <blockquote class="quote">
+                        “HTML is the skeleton, CSS is the skin, and JavaScript is the brain of the web.” 💡
+                    </blockquote>
+            
+                    <h2>🛠 Your First HTML Code!</h2>
+                    <p>Try writing this in your editor and open it in a browser:</p>
+            
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="run-btn" onclick="runCode('editor1')" id="btn"><img src="../../Images/Code/play.png" width="35"></button>
+                                <button class="copy-btn" onclick="copyCode('editor1')" id="btn"><img src="../../Images/Code/copy.png" width="25 "></button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                                <div id="editor1" class="editor"></div>
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <div class="code-wrapper">
+                        <div class="tool-tip">
+                            <div class="threeDots">
+                                <ul id="threeDotsContainer">
+                                    <li id="threeDot">🔴</li>
+                                    <li id="threeDot">🟡</li>
+                                    <li id="threeDot">🟢</li>
+                                </ul>
+                            </div>
+                            <div class="btns-container">
+                                <button class="run-btn" onclick="runCode('editor2')" id="btn"><img src="../../Images/Code/play.png" width="35"></button>
+                                <button class="copy-btn" onclick="copyCode('editor2')" id="btn"><img src="../../Images/Code/copy.png" width="25 "></button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div id="editor2" class="editor"></div>
+                        </div>
+                    </div>
+                    
+            
+                    <p>Congratulations! You just wrote your first HTML page! 🎉</p>
+                    <p class="next-text">Continue learning</p>
+                    <div class="next-container">
+                        <a href="#cssToHtml" class="next-btn">HTML Structure</a>
+                    </div>
+                    
+
+                </div>
+            </section>
+
+
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
