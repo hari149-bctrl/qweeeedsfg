@@ -57,6 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('trust proxy', 1);
 // Session Configuration
 app.use(session({
   secret: SESSION_SECRET,
