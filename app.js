@@ -10,7 +10,6 @@ const nodemailer = require('nodemailer')
 const path = require('path');
 const crypto = require('crypto');
 const axios = require('axios');
-const { required } = require('nodemon/lib/config');
 
 // Initialize Express
 const app = express();
