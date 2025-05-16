@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>File Upload</title>
+</head>
+<body>
+  <div class="main">
+    <div class="folderContainer">
+      <button type="button" class="check">Check</button>
+      <form id="uploadForm">
+        <input type="text" class="folderName" placeholder="Folder name" required />
+        <button type="submit" class="uploadAll">Upload to Mongo</button>
+      </form>
+    </div>
+    <div class="linkContainer"></div>
+  </div>
+
+  <script>
+    const folderNameInput = document.querySelector('.folderName');
+    const linksContainer = document.querySelector('.linkContainer');
+    let newData = [];
+
+    // Fetch and display files
+    document.querySelector('.check').addEventListener('click', async () => {
+      try {
+        const response = await fetch('/ui/files/');
+        const data = await response.json();
+        console.log(data)
+        if (data.success && Array.isArray(data.fileArray)) {
+          console.log('Files array:', data.fileArray);
+          newData = data.fileArray;
+
+          linksContainer.innerHTML = ''; // clear previous list
+          newData.forEach(file => {
+            const divHtml = `
+              <div class='FileName'><strong>Name:</strong> ${file.name}</div>
+              <div class='FileName'><strong>Link:</strong> <a href="${file.url}" target="_blank">${file.url}</a></div>
+              <hr/>
+            `;
+            linksContainer.innerHTML += divHtml;
+          });
+        } else {
+          console.error('Failed to fetch files');
+        }
+      } catch (err) {
+        console.log('Error fetching files:', err);
+      }
+    });
+
+    // Upload files with folder name
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+      e.preventDefault(); // prevent form reload
+
+      const folderName = folderNameInput.value.trim();
+      if (!folderName) {
+        console.log('Folder name is empty');
+        return;
+      }
+
+      try {
+        for (const file of newData) {
+          const data = {
+            foName: folderNameInput.value,
+            fiName: file.name,
+            fiUri: file.url
+          };
+
+          const res = await fetch('/ui/mongoDataStore/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          const result = await res.json();
+          console.log('Response from server:', result.message);
+        }
+
+        alert('All files uploaded to MongoDB!');
+      } catch (err) {
+        console.log('Upload error:', err);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -40,27 +40,30 @@
         </a>
     </div>
     
-    <!-- Warning Message -->
-    <div class="subMain" id="warningMessage">
-        <div class="notice">
-            <h2>🚨 Important Notice! 🚨</h2>
-            <p>The files available here are <strong>for educational purposes only</strong> and remain the property of their rightful owners.</p>
-            <p>💡 <strong>Are you the owner of a file and want it removed?</strong> No problem! Just <span class="contact">reach out to us</span>, and we’ll take it down right away.</p>
-            <p>📩 <strong>Have a question or need support?</strong> Our team is here for you! Simply <span class="contact">contact us</span> through our support form.</p>
-            <p>🚀 <strong>Keep exploring, stay curious, and enjoy your learning journey!</strong> 🚀</p>
-
-        </div>
-
-        <p id="countdown">Closing in 5 seconds</p> <!-- Countdown Timer -->
-    </div>
+    
 
     <!-- File Links Container (Hidden initially with fade-in) -->
-    <div class="fileLinksContainer hidden" id="fileContainer"></div>
+    <div class="mainContainer">
+        <div class="fileLinksContainer" id="fileContainer"></div>
+        <div class="rightMainContainer hidden">
+            <div class="rightTop">
+                <p>Download Files</p>
+                <p onclick="closeRightContainer()" id="closeLinksContainer">❌</p>
+            </div>
+            <div class="infoDiv"><img src="../Images/info.png" width="14"><p>Press on the link to download</p></div>
+            <div class="linksRight"></div>
+        </div>
+    </div>
 
 
     <hr>
-    <footer>
-        <p>🚀 Powered by <strong>Brainy Voyage</strong> ❤️<br> 2025 © All rights reserved</p>
+    <footer style="height: fit-content; padding-bottom: 20px;">
+        <p>&copy; 2025 BRAINY VOYAGE. All rights reserved.</p>
+        <div class="flinksContainer">
+            <a href="../privacy-policy/" class="flink">Privacy-policy</a>
+            <a href="../terms-conditions/" class="flink">Terms & conditions</a>
+            <a href="../refund-policy/" class="flink">Refund-policy</a>
+        </div>
     </footer>
 
 
