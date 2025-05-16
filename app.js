@@ -506,7 +506,7 @@ const keepAlive = () => {
   setInterval(async () => {
     try {
       await axios.get(`https://${process.env.DOMAIN || 'localhost:3000'}/ping`);
-      let msgStatus = `Ping received at ${new Date().toISOString()} From code`;
+      let msgStatus = `Ping received at ${new Date().toISOString()} From brainy`;
       await sendTelegramNotification(msgStatus);
       console.log('🔄 Keepalive ping sent from brainy');
     } catch (err) {
@@ -514,7 +514,7 @@ const keepAlive = () => {
       console.error(errorMsg);
       await sendTelegramNotification(errorMsg);
     }
-  }, 0.5 * 60 * 1000); // 4.5 minutes
+  }, 4.5 * 60 * 1000); // 4.5 minutes
 };
 
 
