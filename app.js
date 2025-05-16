@@ -475,6 +475,54 @@ app.get('/folder/files/', async(req,res) => {
 
 
 
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const CHAT_ID = process.env.CHAT_ID;
+
+
+// telegram Notification
+async function sendTelegramNotification(message) {
+  if (!TELEGRAM_BOT_TOKEN || !CHAT_ID) return;
+  
+  try {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    await axios.post(url, {
+      chat_id: CHAT_ID,
+      text: message,
+    });
+  } catch (error) {
+    console.error('Error sending message to Telegram:', error);
+  }
+}
+
+// Health Check
+app.get('/ping', async (req, res) => {
+  res.status(200).json({
+    status: 'alive',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString()
+  });
+});
+
+const keepAlive = () => {
+  setInterval(async () => {
+    try {
+      await axios.get(`https://${process.env.DOMAIN || 'localhost:3000'}/ping`);
+      let msgStatus = `Ping received at ${new Date().toISOString()} From code`;
+      await sendTelegramNotification(msgStatus);
+      console.log('🔄 Keepalive ping sent from brainy');
+    } catch (err) {
+      const errorMsg = `❌ Keepalive failed: ${err.message}`;
+      console.error(errorMsg);
+      await sendTelegramNotification(errorMsg);
+    }
+  }, 0.5 * 60 * 1000); // 4.5 minutes
+};
+
+
+
+
+
+
 
 
 
@@ -499,4 +547,5 @@ app.use((err, req, res, next) => {
 // Start Server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
+  keepAlive();
 });
