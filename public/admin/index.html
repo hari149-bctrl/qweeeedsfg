@@ -4,17 +4,608 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrainyVoyage</title>
+    <link rel="shortcut icon" href="../Images/Brainy voyage LOGO_processed.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            scroll-behavior: smooth;
+            user-select: none;
+        }
+    
+        :root {
+            --background-dark: #121212;
+            --primary-color: #FFDD40;
+            --secondary-color: #1DBF73;
+            --text-color: #EAEAEA;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --glow: rgba(255, 221, 64, 0.8);
+            --background-color: #203141;
+            --background-color-deap: #142231;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+    
+        body {
+            margin: 0;
+            padding-bottom: 70px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+    
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            margin: 0;
+            background-color: var(--background-color-deap);
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--text-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+    
+        button {
+            background-color: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+    
+        .headerRight {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 15px;
+        }
+    
+        .headerRight img {
+            width: 24px;
+            height: 24px;
+            /* filter: invert(1); */
+            transition: var(--transition);
+        }
+    
+        .headerRight img:hover {
+            transform: scale(1.1);
+        }
+    
+        .hidden {
+            display: none;
+        }
+    
+        nav {
+            margin: 15px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+    
+        ul {
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            text-decoration: none;
+            list-style: none;
+            column-gap: 15px;
+            width: 100%;
+        }
+    
+        li {
+            padding: 8px 16px;
+            height: 36px;
+            background-color: var(--primary-color);
+            color: var(--background-color-deap);
+            border-radius: var(--border-radius);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+    
+        li:hover {
+            background-color: #EAEAEA;
+            color: #121212;
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+    
+        .availableCompaniesData {
+            display: flex;
+            flex-direction: column;
+            color: var(--text-color);
+            margin: 20px;
+            row-gap: 15px;
+        }
+    
+        .quickActions {
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            gap: 15px;
+        }
+    
+        .companiesContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 221, 64, 0.3);
+            border-bottom: 1px solid rgba(255, 221, 64, 0.3);
+            align-items: center;
+        }
+    
+        .individualCompanies {
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: fit-content;
+            background-color: var(--primary-color);
+            color: var(--background-color-deap);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+            height: 40px;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+    
+        .individualCompanies:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+    
+        .individualCompanies hr {
+            height: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+    
+        #addNewJob, #fetchCompaniesData {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            height: 36px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+    
+        #addNewJob:hover, #fetchCompaniesData:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+    
+        .newJobMainContainer {
+            margin: 20px;
+            padding: 20px;
+            background-color: var(--background-color-deap);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+    
+        .checkbox-grid {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+    
+        input[type="checkbox"] {
+            display: none;
+        }
+    
+        .checkbox-grid label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            height: 36px;
+            padding: 0 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-weight: 600;
+        }
+    
+        input[type="checkbox"]:checked + label {
+            background-color: var(--secondary-color);
+            color: black;
+        }
+    
+        .companyDataHead {
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            row-gap: 15px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+        }
+    
+        .companyDataHead p {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    
+        .companyInput {
+            width: 100%;
+            max-width: 400px;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+    
+        .companyInput:focus, .aboutTxt:focus {
+            border: 2px solid var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(29, 191, 115, 0.3);
+        }
+    
+        .aboutCompanyMainContainer, 
+        .eligibilityMainContainer, 
+        .rolesMainContainer {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+    
+        .aboutTxt {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            resize: vertical;
+            transition: var(--transition);
+        }
+    
+        .topStoreBtn {
+            border: none;
+            background-color: var(--secondary-color);
+            color: black;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            margin: 10px 0;
+        }
+    
+        .topStoreBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+    
+        .linktoapply {
+            width: 100%;
+            margin: 20px 0;
+        }
+    
+        .sbtn {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+    
+        @media (max-width: 768px) {
+            .companyDataHead p {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .companyDataHead p span{
+                width: 100%;
+            }
+            .aboutCompanyMainContainer{
+                width: 100%;
+            }
+            .aboutCompanyMainContainer p{
+                width: 100%;
+            }
+            .companyInput {
+                max-width: 100%;
+            }
+            
+            .checkbox-grid {
+                gap: 8px;
+            }
+            
+            .checkbox-grid label {
+                padding: 0 10px;
+                font-size: 12px;
+            }
+            
+            header {
+                padding: 10px 15px;
+            }
+            
+            li {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <p>Hai, Hari💖</p>
-        <button>🔔</button>
-        <button>Exit 🚶‍♂️‍➡️</button>
+        <p>Welcome, Hari</p>
+        <div class="headerRight">
+            <p id="toastNotifications" class="hidden">Notifications</p>
+            <button><img src="../Images/dashboard/notifications-white.png" alt="🔔"></button>
+            <p>|</p>
+            <button onclick="logout()"><img src="../Images/dashboard/logout-white.png" alt="🚶‍♂️‍➡️"></button>
+        </div>
     </header>
     <main>
-        <div class="uploadJobsContainer">
-            div.
+        <nav>
+            <ul>
+                <li>Jobs</li>
+                <li>Materials</li>
+            </ul>
+        </nav>
+
+        <div class="jobsMaincontainer">
+            <div class="availableCompaniesData">
+                <div class="quickActions">
+                    <a id="addNewJob">Add New Company</a>
+                    <button id="fetchCompaniesData">Fetch Companies</button>
+                </div>
+                <div id="companiesContainer" class="companiesContainer ">
+                    <div class="individualCompanies">
+                        <p id="companyName">Delloite</p>
+                        <hr>
+                        <p id="jobsCount">0</p>
+                    </div>
+                    <div class="individualCompanies">
+                        <p id="companyName">TCS</p>
+                        <hr>
+                        <p id="jobsCount">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="newJobMainContainer">
+                <div class="checkbox-grid">
+                    <div>
+                        <input type="checkbox" id="internship" value="internship" name="category"/>
+                        <label for="internship">Internship</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="fresher" value="fresher" name="category"/>
+                        <label for="fresher">Fresher</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="experienced" value="experienced" name="category"/>
+                        <label for="experienced">Experienced</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="student" value="student" name="category"/>
+                        <label for="student">Student</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="ug" value="ug" name="category"/>
+                        <label for="ug">UG</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="pg" value="pg" name="category"/>
+                        <label for="pg">PG</label>
+                    </div>
+                </div>
+                <div class="companyDataMainContainer">
+                    <div class="companyDataHead">
+                        <p>ID: <span><input type="text" placeholder="Enter ID"  id="getID" class="companyInput"></span></p>
+                        <p>Role: <span><input type="text" placeholder="Enter role"  id="getRole" class="companyInput"></span></p>
+                        <p>Company: <span><input type="text" placeholder="Enter Company Name"  id="getCompany" class="companyInput"></span></p>
+                        <p>Salary: <span><input type="text" placeholder="Enter Salary"  id="getSalary" class="companyInput"></span></p>
+                        <p>Location: <span><input type="text" placeholder="Enter locations" list="listItems"  id="getLocation" class="companyInput"></span></p>
+                        <datalist id="listItems">
+                            <option value="Bengaluru"></option>
+                            <option value="Hyderabad"></option>
+                            <option value="Chennai"></option>
+                            <option value="Pune"></option>
+                            <option value="Delhi"></option>
+                            <option value="Ahmedabad"></option>
+                            <option value="Gujarat"></option>
+                            <option value="Nepal"></option>
+                        </datalist>
+                        <p>Expires: <span><input type="datetime-local" id="getTime" class="companyInput"></span></p>
+                        <button onclick="logCompanyData()" class="topStoreBtn">Store</button>
+                    </div>
+                </div>
+                <div class="aboutCompanyMainContainer">
+                    <div class="eligibilityMainContainer">
+                        <p>About:</p>
+                        <textarea type="" placeholder="About company"  id="getAbout" class="companyInput aboutTxt"></textarea>
+                    </div>
+                    <button onclick="parser()" class="topStoreBtn">parse</button>
+                </div>
+                <div class="eligibilityMainContainer">
+                    <p>Eligibility:</p>
+                    <textarea name="points" id="pointsBreaker" class="aboutTxt"></textarea>
+                </div>
+                <div class="rolesMainContainer">
+                    <p>Roles and Responsibilities:</p>
+                    <textarea name="points" id="rolesPoints" class="aboutTxt"></textarea>
+                </div>
+                <div class="linktoapply">
+                    <p>Apply Link</p>
+                    <input type="text" name="linkCo" id="linkContainer" class="companyInput">
+                </div>
+                <div class="sbtn">
+                    <button class="preview topStoreBtn" >Preview</button>
+                    <button type="submit" class="sendToMongo topStoreBtn">Submit</button>
+                </div>
+                
+                  
+            </div>
         </div>
+
     </main>
+
+    <script>
+        function logout() {
+            window.location.href = '/logout';
+        }
+
+
+        const categoryState = {
+            fresher: false,
+            experienced: false,
+            student: false,
+            ug: false,
+            pg: false,
+            internship: false
+        };
+
+        const entireData  = {};
+        
+        const companiesContainer = document.querySelector('.companiesContainer');
+        
+        // Add new company
+        document.getElementById('addNewJob').addEventListener('click', () => {
+            console.log("new job ntm clicked")
+        })
+
+        document.getElementById('fetchCompaniesData').addEventListener('click', () => {
+            console.log("Clicked")
+            companiesContainer.classList.remove('hidden');
+        })
+
+        // For the checkbox data
+        function updateCategoryState() {
+            document.querySelectorAll('input[name="category"]').forEach(cb => {
+            categoryState[cb.value] = cb.checked;
+            });
+
+            console.log(categoryState)
+        }
+        // Attach listener to all checkboxes
+        document.querySelectorAll('input[name="category"]').forEach(cb => {
+            cb.addEventListener('change', updateCategoryState);
+        });
+
+
+
+        // for the content head
+        function logCompanyData() {
+            const data = {
+                role: document.getElementById('getRole').value.trim(),
+                company: document.getElementById('getCompany').value.trim(),
+                salary: document.getElementById('getSalary').value.trim(),
+                location: document.getElementById('getLocation').value.trim(),
+                expires: document.getElementById('getTime').value
+            };
+
+            console.log(JSON.stringify(data, null, 2));
+            entireData.data = data;
+            entireData.category = categoryState;
+            console.log("entireData:", entireData);
+        }
+
+
+        // Parse the entire data
+        function parser() {
+            const aboutData = document.getElementById('getAbout').value;
+            console.log(aboutData);
+
+            const splitParagraphs = aboutData
+                .trim()
+                .split(/\n\s*\n/) // split by empty lines
+                .map(p => p.trim().replace(/\n/g, ' ')) // flatten inner line breaks
+                .join('<br><br>'); // HTML paragraph break
+
+            console.log(splitParagraphs);
+            entireData.aboutData = splitParagraphs;
+            const output = document.getElementById('output');
+            output.innerHTML = ''; // clear previous result if any
+
+            const p = document.createElement('p');
+            p.innerHTML = splitParagraphs; // ✅ renders HTML line breaks
+
+            output.appendChild(p);
+        }
+
+        document.querySelector('.preview').addEventListener('click', () => {
+            let eligility = document.getElementById('pointsBreaker').value
+            let roles = document.getElementById('rolesPoints').value
+            let link = document.getElementById('linkContainer').value;
+            console.log(eligility);
+            console.log(rolesPoints);
+            console.log(link);
+            entireData.eligility = eligility;
+            entireData.roles = roles;
+            entireData.link = link;
+            console.log(entireData)
+        })
+
+        document.querySelector('.sendToMongo').addEventListener('click', async() => {
+            console.log("Pressed");
+            let ID = document.getElementById('getID').value
+            let eligility = document.getElementById('pointsBreaker').value
+            let roles = document.getElementById('rolesPoints').value
+            let link = document.getElementById('linkContainer').value;
+            console.log(eligility);
+            console.log(rolesPoints);
+            console.log(link);
+            entireData.ID = ID;
+            entireData.eligility = eligility;
+            entireData.roles = roles;
+            entireData.link = link;
+            console.log(entireData)
+            try {
+                const response = await fetch('/jobs/upload', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(entireData),
+                })
+            }catch(err){
+                console.log(err)
+            }
+        })
+
+    </script>
 </body>
 </html>

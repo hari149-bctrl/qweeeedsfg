@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const fetch = require('node-fetch');
 const express = require('express');
@@ -6,40 +5,41 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 const path = require('path');
 const crypto = require('crypto');
 const axios = require('axios');
+const cors = require('cors');
+const { type } = require('os');
 const { required } = require('nodemon/lib/config');
 
 // Initialize Express
 const app = express();
 app.set('trust proxy', 1);
-
+app.use(cors())
 const PORT = process.env.PORT || 3000;
+
 // Configuration
 const MONGODB_URI = process.env.MONGO_URI;
 const SESSION_SECRET = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
 const botToken = process.env.botToken;
+const CHANNEL_NAME = process.env.CHANNEL_NAME;
+const gitToken = process.env.GITHUB_TOKEN;
 
-// MongoDB Connection (no deprecated options)
+// MongoDB Connection
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   retryWrites: true,
   w: 'majority'
-});
-
-mongoose.connection.on('error', (err) => {
-  console.error('❌ MongoDB connection error:', err);
-});
-
-mongoose.connection.once('open', () => {
+}).then(() => {
   console.log('✅ MongoDB connected');
-  // startScheduledJobs();
+}).catch(err => {
+  console.error('❌ MongoDB connection error:', err);
+  process.exit(1);
 });
 
-// User Schema
+// Schemas
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -55,34 +55,102 @@ const userSchema = new mongoose.Schema({
     minlength: 8
   }
 });
+
 const filesSchema = new mongoose.Schema({
-  folderName: {type: String, required:true, index:true},
-  fileName:{type:String, required:true},
-  fileLink:{type:String, required:true},
-  downloadCount: { type: Number, default: 0 }
-})
-const fileStorage = mongoose.model('fileStorage', filesSchema);
-
-const folderSchema = new mongoose.Schema({
-  folderName: {type: String, required: true, index:true, unique:true},
-})
-const folderStorage = mongoose.model('folderStorage', folderSchema)
-
-// Hash password before saving
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
+  folderName: { type: String, required: true, index: true },
+  fileName: { type: String, required: true },
+  fileLink: { type: String, required: true },
+  downloadCount: { type: Number, default: 0 },
+  telegramFileId: { type: String } // Store Telegram file ID for future reference
 });
 
+const folderSchema = new mongoose.Schema({
+  folderName: { type: String, required: true, index: true, unique: true },
+});
+
+const companySchema = new mongoose.Schema({
+  companyName : {type: String, required: true, index:true, unique:true},
+  aboutData: {type: String, required:true},
+})
+
+const jobSchema = new mongoose.Schema({
+  id: {type: String, required:true, unique:true, index:true},
+  company: {
+    type: String,
+    required: true,
+    index: true,
+  },
+  category: {
+    fresher: {
+      type: Boolean,
+      default: false
+    },
+    experienced: {
+      type: Boolean,
+      default: false
+    },
+    student: {
+      type: Boolean,
+      default: false
+    },
+    ug: {
+      type: Boolean,
+      default: false
+    },
+    pg: {
+      type: Boolean,
+      default: false
+    },
+    internship: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data:{
+    role: {
+      type: String,
+      required: true
+    },
+    salary: {
+      type: String,
+      required: true
+    },
+    location: {
+      type: String,
+      required: true
+    },
+    expires: {
+      type: Date,
+      required: true
+    }
+  },
+  eligility: {
+    type: String,
+    required: true
+  },
+  roles: {
+    type: String,
+    required: true
+  },
+  link: {
+    type: String,
+    required: true
+  },
+})
+jobSchema.index({ "data.expires": 1 }, { expireAfterSeconds: 0 });
+// Models
+const jobsData = mongoose.model('jobsData', jobSchema);
+const companyData = mongoose.model('companyData', companySchema);
 const User = mongoose.model('User', userSchema);
+const fileStorage = mongoose.model('fileStorage', filesSchema);
+const folderStorage = mongoose.model('folderStorage', folderSchema);
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Session Configuration (with connect-mongo)
+// Session Configuration
 app.use(session({
   secret: SESSION_SECRET,
   resave: false,
@@ -95,6 +163,86 @@ app.use(session({
   }
 }));
 
+
+const USERNAME = 'b-r-m-h';
+const REPO = 'resources';
+const BRANCH = 'main';
+
+// Recursive GitHub fetcher
+const getPDFLinksFromGitHub = async (path = '') => {
+  const url = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/${path}?ref=${BRANCH}`;
+  console.log('Fetching GitHub URL:', url);
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'pdf-fetcher',
+        'Authorization': `token ${gitToken}`
+      }
+    });
+
+    const items = response.data;
+    let pdfLinks = [];
+
+    for (const item of items) {
+      if (item.type === 'file' && item.name.endsWith('.pdf')) {
+        const downloadLink = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/${BRANCH}/${item.path}`;
+        pdfLinks.push({
+          name: item.name,
+          path: item.path,
+          url: downloadLink
+        });
+      } else if (item.type === 'dir') {
+        const subDirLinks = await getPDFLinksFromGitHub(item.path);
+        pdfLinks = pdfLinks.concat(subDirLinks);
+      }
+    }
+
+    return pdfLinks;
+  } catch (error) {
+    console.error('Error fetching from GitHub:', error.message);
+    return [];
+  }
+};
+
+// Categorize PDFs by top-level folder
+const categorizePDFs = (pdfList) => {
+  const categories = {};
+
+  for (const pdf of pdfList) {
+    const parts = pdf.path.split('/');
+    const folder = parts[0] || 'Uncategorized';
+
+    if (!categories[folder]) {
+      categories[folder] = [];
+    }
+
+    categories[folder].push({
+      name: pdf.name,
+      path: pdf.path,
+      url: encodeURI(pdf.url)
+    });
+  }
+
+  return categories;
+};
+
+// API Endpoint
+app.get('/api/pdfs', async (req, res) => {
+  try {
+    const pdfs = await getPDFLinksFromGitHub();
+    const categorized = categorizePDFs(pdfs);
+    console.log(categorized)
+    console.log(pdfs)
+    res.json(categorized);
+  } catch (err) {
+    console.error('Failed to fetch and categorize PDFs:', err.message);
+    res.status(500).json({ error: 'Failed to fetch PDFs' });
+  }
+});
+
+
+
 // Routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -102,16 +250,14 @@ app.get('/', (req, res) => {
 
 app.get('/login', (req, res) => {
   if (req.session.user) return res.redirect('/dashboard');
+  sendTelegramNotification("Opened Login page for brainy voyage");
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 app.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).send('Email and password are required');
-    }
+    if (!email || !password) return res.status(400).send('Email and password are required');
 
     const user = await User.findOne({ email });
     if (!user) return res.status(401).send('Invalid credentials');
@@ -120,209 +266,42 @@ app.post('/login', async (req, res) => {
     if (!isMatch) return res.status(401).send('Invalid credentials');
 
     req.session.user = { id: user._id, email: user.email };
-    console.log('✅ Logged in:', req.session.user);
-    res.redirect('/dashboard');
+    res.redirect('/dashboard/');
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).send('Login failed');
   }
 });
 
-// Uncomment to allow registration
-/*
-app.get('/register', (req, res) => {
-  if (req.session.user) return res.redirect('/dashboard');
-  res.sendFile(path.join(__dirname, 'public', 'register.html'));
-});
-
-app.post('/register', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).send('Email and password are required');
-    }
-
-    if (password.length < 8) {
-      return res.status(400).send('Password must be at least 8 characters');
-    }
-
-    const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(409).send('Email already in use');
-
-    const newUser = new User({ email, password });
-    await newUser.save();
-    res.redirect('/login');
-  } catch (err) {
-    console.error('Registration error:', err);
-    res.status(500).send('Registration failed');
-  }
-});
-*/
-
-app.get('/dashboard', (req, res) => {
-  console.log('Dashboard hit, session:', req.session.user);
+app.get('/dashboard/', (req, res) => {
   if (!req.session.user) return res.redirect('/login');
+  sendTelegramNotification("Logged into the dashboard for Brainy Voyage");
   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
 });
 
 app.get('/logout', (req, res) => {
   req.session.destroy(err => {
-    if (err) console.error('Logout error:', err);
+    if (err) {
+      console.error('Logout error:', err);
+      return res.status(500).send('Error logging out');
+    }
     res.redirect('/login');
   });
 });
 
-
-
-// For the form
-app.post("/send", async (req, res) => {
-  const { name, email, message } = req.body;
-
-  const transporter = nodemailer.createTransport({
-    host: "smtp.zoho.in", // Or smtp.zoho.com if you're outside India
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.ZOHO_EMAIL,
-      pass: process.env.ZOHO_APP_PASSWORD
-    }
-  });
-
-  const mailOptions = {
-    from: process.env.ZOHO_EMAIL,
-    to: process.env.ZOHO_EMAIL,
-    subject: `New Message from ${name}`,
-    text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    res.json({ success: true, message: "Message sent successfully!" });
-  } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).json({ success: false, message: "Failed to send message" });
-  }
-});
-
-
-
-
-
-
-
-
-
-
-// Replace with your bot's token
-const apiUrl = `https://api.telegram.org/bot${botToken}/`;
-let lastUpdateId = 0;
-let fileArray = [];
-async function getUpdates() {
-  try {
-      const response = await fetch(`${apiUrl}getUpdates?offset=${lastUpdateId + 1}&allowed_updates=["channel_post"]`);
-      const data = await response.json();
-
-      if (data.ok && data.result.length > 0) {
-          data.result.forEach(update => {
-              console.log(update);
-              lastUpdateId = update.update_id;
-
-              // Handle channel post documents
-              if (update.channel_post?.document) {
-                  const fileId = update.channel_post.document.file_id;
-                  const originalFileName = update.channel_post.document.file_name;
-
-                  try{
-                    getFile(fileId, originalFileName)
-                  }catch(err){
-                    console.log(err);
-                  }
-              }
-          });
-      }
-  } catch (error) {
-      console.error('Update error:', error);
-  }
-}
-
-// Get the Telegram file path and log the proxy URL
-async function getFile(fileId, originalFileName) {
-  try {
-      const response = await fetch(`${apiUrl}getFile?file_id=${fileId}`);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-      const data = await response.json();
-
-      if (data.ok) {
-          const filePath = data.result.file_path;
-
-          // Construct proxy download URL with original file name
-          // const baseUrl = 'http://localhost:3000'; // Change to your deployed domain if needed
-          const downloadUrl = `/api/telegram-file?file_path=${encodeURIComponent(filePath)}&file_name=${encodeURIComponent(originalFileName)}`;
-
-          console.log(`✅ File ready: ${originalFileName}`);
-          // console.log(`🔗 Proxy download link: ${downloadUrl}`);
-
-          links(originalFileName, downloadUrl);
-      }
-  } catch (error) {
-      console.error('Error getting file:', error);
-  }
-}
-
-// Proxy endpoint to securely serve the file
-app.get('/api/telegram-file', async (req, res) => {
-  try {
-      const filePath = req.query.file_path;
-      const originalFileName = req.query.file_name || 'downloaded_file';
-
-      if (!filePath) return res.status(400).send('Missing file_path');
-
-      const telegramFileUrl = `https://api.telegram.org/file/bot${botToken}/${filePath}`;
-      const response = await axios.get(telegramFileUrl, { responseType: 'stream' });
-
-      res.setHeader('Content-Disposition', `attachment; filename="${originalFileName}"`);
-      res.setHeader('Content-Type', response.headers['content-type']);
-
-      response.data.pipe(res);
-  } catch (error) {
-      console.error('Proxy download error:', error);
-      res.status(500).send('Error downloading file');
-  }
-});
-
-// let fileArray = [];
-
-// Fetch files - used by frontend "Check" button
+// File management endpoints
 app.get('/ui/files/', async (req, res) => {
   try {
-    console.log("GET /ui/files - Got to backend");
-    res.json({ success: true, fileArray });
+    res.json({ success: true, files: fileArray });
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: 'Server error' });
   }
 });
 
-// Add file to array from Telegram bot or elsewhere
-async function links(fileName, link) {
-  const fileObject = {
-    name: fileName,
-    url: link
-  };
-
-  fileArray.push(fileObject);
-  console.log('File added:', fileObject);
-  console.log('Current JSON array:', fileArray);
-}
-
-// Frontend sends folderName + each file (name, URL)
 app.post('/ui/mongoDataStore/', async (req, res) => {
   try {
     const { foName, fiName, fiUri } = req.body;
-    console.log("POST /ui/mongoDataStore - Received:", foName, fiName, fiUri);
-
     if (!foName || !fiName || !fiUri) {
       return res.status(400).json({ success: false, message: "Missing required fields" });
     }
@@ -332,13 +311,14 @@ app.post('/ui/mongoDataStore/', async (req, res) => {
       fileName: fiName,
       fileLink: fiUri,
     });
+    
     const newFolder = new folderStorage({
       folderName: foName,
-    })
+    });
 
     await newFile.save();
     await newFolder.save();
-    fileArray.length = 0;
+    fileArray = fileArray.filter(f => f.name !== fiName); // Clear from memory after saving
     res.json({ success: true, message: "Data received" });
   } catch (err) {
     console.error(err);
@@ -346,147 +326,136 @@ app.post('/ui/mongoDataStore/', async (req, res) => {
   }
 });
 
-// [OPTIONAL] You can use this POST route if needed
-app.post('/ui/mongo', async (req, res) => {
+// Database endpoints
+app.get('/materials/folders', async (req, res) => {
   try {
-    console.log("POST /ui/mongo - Got to backend");
-    res.json({ success: true, fileArray });
+    const folders = await folderStorage.find({});
+    res.status(200).json(folders);
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ success: false, message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ error: 'Fetch error' });
   }
 });
 
-// app.get('/api/telegram-file', async (req, res) => {
-//   try {
-//     const { file_path, file_name } = req.query;
-    
-//     if (!file_path) {
-//       return res.status(400).json({ error: "Missing file_path" });
-//     }
-
-//     const telegramUrl = `https://api.telegram.org/file/bot${botToken}/${file_path}`;
-//     const response = await axios.head(telegramUrl); // Check file existence first
-
-//     // Get the filename from the URL if not provided
-//     const fileName = file_name || file_path.split('/').pop();
-
-//     // Stream the file with proper error handling
-//     const fileResponse = await axios.get(telegramUrl, { 
-//       responseType: 'stream',
-//       maxContentLength: 50 * 1024 * 1024, // Allow files up to 50 MB
-//     });
-
-//     res.setHeader('Content-Disposition', `attachment; filename="${encodeURIComponent(fileName)}"`);
-//     res.setHeader('Content-Type', fileResponse.headers['content-type'] || 'application/octet-stream');
-
-//     fileResponse.data.pipe(res);
-//   } catch (error) {
-//     console.error('Proxy download error:', error.message);
-//     res.status(500).json({ 
-//       error: "Failed to download file",
-//       details: error.response?.status === 400 ? "File may be too large (>20 MB)" : error.message 
-//     });
-//   }
-// });
-
-
-
-// Example of how to create a download link in your UI
-// function createDownloadLink(fileName, downloadUrl) {
-//   const downloadContainer = document.getElementById('downloads-container') || document.body.appendChild(document.createElement('div'));
-//   const link = document.createElement('a');
-//   link.href = downloadUrl;
-//   link.textContent = `Download ${fileName}`;
-//   link.download = fileName;
-//   link.style.display = 'block';
-//   link.style.margin = '10px 0';
-  
-//   downloadContainer.appendChild(link);
-// }
-
-// app.get('/api/telegram-file', async (req, res) => {
-//   try {
-//       const filePath = req.query.file_path;
-//       if (!filePath) return res.status(400).send('File path required');
-      
-//       const telegramUrl = `https://api.telegram.org/file/bot${botToken}/${filePath}`;
-//       const response = await axios.get(telegramUrl, { responseType: 'stream' });
-      
-//       // Set proper filename from the path
-//       const fileName = filePath.split('/').pop();
-//       res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
-      
-//       response.data.pipe(res);
-//   } catch (error) {
-//       console.error('Proxy download error:', error);
-//       res.status(500).send('Error downloading file');
-//   }
-// });
-
-// Better polling implementation
-let pollingInterval = 5000;
-let isPolling = false;
-
-async function startPolling() {
-    if (isPolling) return;
-    isPolling = true;
-    
-    while (isPolling) {
-        await getUpdates();
-        await new Promise(resolve => setTimeout(resolve, pollingInterval));
-    }
-}
-
-// Start polling
-startPolling();
-
-
-
-
-
-
-
-
-// Fetching data from mongoDB
-app.get('/materials/folders', async(req,res)=>{
-  try{
-    const folders = await folderStorage.find({});
-    console.log(folders)
-    res.status(200).json(folders)
-  }
-  catch(err){
-    console.log(err);
-    res.status(500).json({ error: 'Fetch error' });
-  }
-})
-
-app.get('/folder/files/', async(req,res) => {
-  try{
+app.get('/folder/files/', async (req, res) => {
+  try {
     const files = await fileStorage.find({});
-    console.log(files);
-    res.status(200).json(files)
+    res.status(200).json(files);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "file error" });
   }
-  catch(err){
-    console.log(err);
-    res.status(500).json({error : "file error"})
+});
+
+
+
+
+
+
+
+
+// For uploading the jobs and getting the jobs from/to mongo
+
+app.post('/jobs/upload', async(req,res) => {
+  try{
+
+    console.log('Received data:', req.body);
+    const dataFromUI = req.body;
+    if (!dataFromUI) {
+      return res.status(400).json({ success: false, message: "Missing required fields" });
+    }
+  
+    const newJob = new jobsData({
+      id: dataFromUI.ID,
+      company: dataFromUI.data.company,
+      category: {
+        fresher: dataFromUI.category.fresher,
+        experienced: dataFromUI.category.experienced,
+        student: dataFromUI.category.student,
+        ug: dataFromUI.category.ug,
+        pg: dataFromUI.category.pg,
+        internship: dataFromUI.category.internship
+      },
+      data: {
+        role: dataFromUI.data.role,
+        salary: dataFromUI.data.salary,
+        location: dataFromUI.data.location,
+        expires: dataFromUI.data.expires
+      },
+      eligility: dataFromUI.eligility,
+      roles: dataFromUI.roles,
+      link: dataFromUI.link
+    })
+
+    await newJob.save();
+    const existingCompany = await companyData.findOne({ companyName: dataFromUI.data.company });
+
+    if (existingCompany) {
+      console.log('Company exists:', existingCompany);
+    } else {
+      const companyInfo = new companyData({
+        companyName : dataFromUI.data.company,
+        aboutData: dataFromUI.aboutData
+      });
+      await companyInfo.save();
+    }
+  
+    
+    
+
+    console.log("Data Saved to mongoDB");
+    res.status(200).json({success: true, message: "Job data saved to mongoDB"})
+  }catch(err){
+    console.log("error saving the job data", err)
   }
+
 })
 
 
 
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const CHAT_ID = process.env.CHAT_ID;
 
 
-// telegram Notification
+
+// API route for fetching the job data
+let cacheJobs = [];
+app.get('/hire/data/', async (req, res) => {
+  try {
+    const jobs = await jobsData.find({});
+    console.log(jobs)
+    if (!jobs) {
+      return res.status(404).json({ message: "No job data found" });
+    }
+    // cacheJobs = jobs;
+    console.log("Fetched job data:", jobs);
+    res.json(jobs);
+
+  } catch (err) {
+    console.error("Error while fetching the jobs data:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Telegram notification
 async function sendTelegramNotification(message) {
-  if (!TELEGRAM_BOT_TOKEN || !CHAT_ID) return;
+  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.CHAT_ID) return;
   
   try {
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    await axios.post(url, {
-      chat_id: CHAT_ID,
+    await axios.post(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      chat_id: process.env.CHAT_ID,
       text: message,
     });
   } catch (error) {
@@ -495,7 +464,7 @@ async function sendTelegramNotification(message) {
 }
 
 // Health Check
-app.get('/ping', async (req, res) => {
+app.get('/ping', (req, res) => {
   res.status(200).json({
     status: 'alive',
     uptime: process.uptime(),
@@ -503,49 +472,9 @@ app.get('/ping', async (req, res) => {
   });
 });
 
-const keepAlive = () => {
-  setInterval(async () => {
-    try {
-      await axios.get(`https://${process.env.DOMAIN || 'localhost:3000'}/ping`);
-      let msgStatus = `Ping received at ${new Date().toISOString()} From code`;
-      await sendTelegramNotification(msgStatus);
-      console.log('🔄 Keepalive ping sent from brainy');
-    } catch (err) {
-      const errorMsg = `❌ Keepalive failed: ${err.message}`;
-      console.error(errorMsg);
-      await sendTelegramNotification(errorMsg);
-    }
-  }, 0.5 * 60 * 1000); // 4.5 minutes
-};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Error Handling
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something went wrong!');
-});
 
 // Start Server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  keepAlive();
 });

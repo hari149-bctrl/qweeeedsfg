@@ -104,6 +104,226 @@ body {
 
 
 
+
+
+
+
+
+
+
+.nav-container {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #0d1626;
+      flex-wrap: wrap;
+    }
+
+    .search-bar {
+      flex: 1;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .search-btn{
+        padding: 10px;
+        background-color: transparent;
+        border: none
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border: none;
+      box-sizing: border-box;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+    }
+
+    .dropdowns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .dropdowns select {
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .dropdowns {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .dropdowns.show {
+        display: flex;
+      }
+
+      .search-bar {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    /* Targeting the select box */
+.dropdowns select {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background-color: #0f1c33;  /* Dark background */
+  color: white;               /* White text */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 50%;
+  background-size: 1rem;
+}
+
+/* Optional: Style the dropdown arrow on hover */
+.dropdowns select:hover {
+  background-color: #12243d;
+}
+
+/* Optional: make it consistent in all browsers */
+.dropdowns select option {
+  background-color: #0f1c33;
+  color: white;
+}
+
+
+select:hover,
+select:focus, .search-container:focus {
+  background-color: #16233f;
+  outline: none;
+  border: 1px solid #4a90e2;
+}
+
+select {
+  min-width: 180px;
+}
+.boldText{
+    color: white;
+}
+.in-text{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 5px;
+}
+
+.in-text img{
+    width: 24px;
+}
+
+select, .search-container {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .top-bar input[type="text"],
+  .top-bar select {
+    width: 100%;
+  }
+
+  .icon-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .icon-buttons > * {
+    margin-right: 1rem;
+  }
+   .nav-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+   }
+   .menu-toggle{
+        margin-top: -8px;
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Hiring Container */
 .hiringContainer {
     display: grid;
