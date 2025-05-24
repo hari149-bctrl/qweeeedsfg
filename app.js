@@ -116,7 +116,7 @@ app.use(session({
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: MONGODB_URI }),
   cookie: {
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 30 * 60 * 1000,
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production'
   }
@@ -207,48 +207,100 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/login', (req, res) => {
-  if (req.session.user) return res.redirect('/dashboard');
-  sendTelegramNotification("Opened Login page for brainy voyage");
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
+// app.get('/login', (req, res) => {
+//   if (req.session.user) return res.redirect(path.join(__dirname, 'public', 'admin', 'index.html'));
+//   sendTelegramNotification("Opened Login page for brainy voyage");
+//   res.sendFile(path.join(__dirname, 'public', 'login.html'));
+// });
 
-app.post('/login', async (req, res) => {
+// app.post('/login', async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     if (!email || !password) return res.status(400).send('Email and password are required');
+
+//     const user = await User.findOne({ email });
+//     if (!user) return res.status(401).send('Invalid credentials');
+
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) return res.status(401).send('Invalid credentials');
+
+//     req.session.user = { id: user._id, email: user.email };
+//     res.redirect('/admin/');
+//   } catch (err) {
+//     console.error('Login error:', err);
+//     res.status(500).send('Login failed');
+//   }
+// });
+
+// app.get('/admin/', (req, res) => {
+//   if (!req.session.user) return res.redirect(path.join(__dirname, 'public', 'login.html'));
+//   sendTelegramNotification("Logged into the dashboard for Brainy Voyage");
+//   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
+// });
+
+// app.get('/logout', (req, res) => {
+//   req.session.destroy(err => {
+//     if (err) {
+//       console.error('Logout error:', err);
+//       return res.status(500).send('Error logging out');
+//     }
+//     res.redirect('/login');
+//   });
+// });
+
+// File management endpoints
+
+// Add these routes to your server.js
+
+// API login endpoint
+app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password) return res.status(400).send('Email and password are required');
+    if (!email || !password) return res.status(400).json({ error: 'Email and password are required' });
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(401).send('Invalid credentials');
+    if (!user) return res.status(401).json({ error: 'Invalid credentials' });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).send('Invalid credentials');
+    if (!isMatch) return res.status(401).json({ error: 'Invalid credentials' });
 
     req.session.user = { id: user._id, email: user.email };
-    res.redirect('/dashboard/');
+    res.json({ 
+      success: true,
+      user: { email: user.email }
+    });
   } catch (err) {
     console.error('Login error:', err);
-    res.status(500).send('Login failed');
+    res.status(500).json({ error: 'Login failed' });
   }
 });
 
-app.get('/admin/', (req, res) => {
-  if (!req.session.user) return res.redirect('/login');
-  sendTelegramNotification("Logged into the dashboard for Brainy Voyage");
-  res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
-});
-
-app.get('/logout', (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      console.error('Logout error:', err);
-      return res.status(500).send('Error logging out');
-    }
-    res.redirect('/login');
+// API auth check endpoint
+app.get('/api/auth/check', (req, res) => {
+  res.json({
+    authenticated: !!req.session.user,
+    user: req.session.user || null
   });
 });
 
-// File management endpoints
+// API logout endpoint
+app.post('/api/auth/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error('Logout error:', err);
+      return res.status(500).json({ error: 'Error logging out' });
+    }
+    res.json({ success: true });
+  });
+});
+
+
+
+
+
+
+
+
 app.get('/ui/files/', async (req, res) => {
   try {
     res.json({ success: true, files: fileArray });
@@ -424,6 +476,32 @@ app.get('/api/job/:id', async (req, res) => {
 
 
 
+// Get all jobs endpoint
+app.get('/api/jobs', async (req, res) => {
+    try {
+        const jobs = await Job.find({});
+        
+        // Transform the data to match your frontend expectations
+        const transformedJobs = jobs.map(job => ({
+            'Company Name': job.company,
+            'Id': job.id,
+            'Role': job.data.role,
+            'Salary': job.data.salary,
+            'Location': job.data.location,
+            'Category': job.category,
+            'Deadline': job.data.expires // Format as YYYY-MM-DD
+        }));
+        
+        res.json(transformedJobs);
+    } catch (error) {
+        console.error("Error fetching jobs:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
+
+
 
 
 
@@ -450,10 +528,20 @@ app.use((err, req, res, next) => {
 
 // Telegram notification
 async function sendTelegramNotification(message) {
-  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.CHAT_ID) return;
+  if (!process.env.botToken || !process.env.CHAT_ID){
+    
+    try {
+      await axios.post(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        chat_id: process.env.CHAT_ID,
+        text: message,
+      });
+    } catch (error) {
+      console.error('Error sending message to Telegram:', error);
+    }
+  };
   
   try {
-    await axios.post(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    await axios.post(`https://api.telegram.org/bot${process.env.botToken}/sendMessage`, {
       chat_id: process.env.CHAT_ID,
       text: message,
     });
@@ -465,7 +553,7 @@ const keepAlive = () => {
   setInterval(async () => {
     try {
       await axios.get(`https://${process.env.DOMAIN || 'localhost:3000'}/ping`);
-      let msgStatus = `Ping received at ${new Date().toISOString()} From code`;
+      let msgStatus = `Ping received from Brainy Voyage`;
       await sendTelegramNotification(msgStatus);
       console.log('🔄 Keepalive ping sent');
     } catch (err) {

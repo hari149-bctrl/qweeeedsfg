@@ -497,29 +497,58 @@
 
         // Check authentication status
         async function checkAuth() {
-            try {
-                const response = await fetch('/api/auth/check', {
-                    credentials: 'include'
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    isAuthenticated = data.authenticated;
-                    if (isAuthenticated) {
-                        handleSuccessfulLogin(data.user);
-                    } else {
-                        showAuthOverlay();
-                    }
-                } else {
-                    showAuthOverlay();
-                }
-            } catch (err) {
-                console.error('Auth check failed:', err);
+        try {
+            const response = await fetch('/api/auth/check');
+            const data = await response.json();
+            
+            isAuthenticated = data.authenticated;
+            if (isAuthenticated) {
+                handleSuccessfulLogin(data.user);
+            } else {
                 showAuthOverlay();
             }
+        } catch (err) {
+            console.error('Auth check failed:', err);
+            showAuthOverlay();
         }
+    }
+
+
+
 
         // Login form submission
+        // loginForm.addEventListener('submit', async (e) => {
+        //     e.preventDefault();
+            
+        //     const email = document.getElementById('login-email').value;
+        //     const password = document.getElementById('login-password').value;
+            
+        //     try {
+        //         const response = await fetch('/login', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             credentials: 'include',
+        //             body: JSON.stringify({ email, password })
+        //         });
+                
+        //         if (response.ok) {
+        //             const data = await response.json();
+        //             isAuthenticated = true;
+        //             authToken = data.token;
+        //             csrfToken = data.csrfToken;
+        //             handleSuccessfulLogin(data.user);
+        //         } else {
+        //             const error = await response.json();
+        //             showLoginError(error.message || 'Login failed');
+        //         }
+        //     } catch (err) {
+        //         console.error('Login error:', err);
+        //         showLoginError('Network error. Please try again.');
+        //     }
+        // });
+
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -532,25 +561,29 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    credentials: 'include',
                     body: JSON.stringify({ email, password })
                 });
                 
                 if (response.ok) {
                     const data = await response.json();
                     isAuthenticated = true;
-                    authToken = data.token;
-                    csrfToken = data.csrfToken;
                     handleSuccessfulLogin(data.user);
                 } else {
                     const error = await response.json();
-                    showLoginError(error.message || 'Login failed');
+                    showLoginError(error.error || 'Login failed');
                 }
             } catch (err) {
                 console.error('Login error:', err);
                 showLoginError('Network error. Please try again.');
             }
         });
+
+
+
+
+
+
+
 
         // Handle successful login
         function handleSuccessfulLogin(user) {
@@ -589,26 +622,47 @@
         }
 
         // Logout function
+        // async function logout() {
+        //     try {
+        //         const response = await fetch('/logout', {
+        //             method: 'POST',
+        //             credentials: 'include'
+        //         });
+                
+        //         if (response.ok) {
+        //             isAuthenticated = false;
+        //             authToken = null;
+        //             csrfToken = null;
+        //             showAuthOverlay();
+        //             // Clear form fields
+        //             loginForm.reset();
+        //         }
+        //     } catch (err) {
+        //         console.error('Logout error:', err);
+        //     }
+        // }
+
         async function logout() {
             try {
                 const response = await fetch('/api/auth/logout', {
-                    method: 'POST',
-                    credentials: 'include'
+                    method: 'POST'
                 });
                 
                 if (response.ok) {
                     isAuthenticated = false;
-                    authToken = null;
-                    csrfToken = null;
                     showAuthOverlay();
-                    // Clear form fields
                     loginForm.reset();
                 }
             } catch (err) {
                 console.error('Logout error:', err);
             }
         }
-
+        
+        
+        
+        
+        
+        
         // Tab switching functionality
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
