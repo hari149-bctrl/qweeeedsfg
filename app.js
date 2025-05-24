@@ -487,6 +487,11 @@ app.get('/ping', (req, res) => {
   });
 });
 
+app.get('/ads.txt', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ads.txt'));
+});
+
+
 
 
 // Start Server
