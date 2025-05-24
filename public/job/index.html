@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brainy voyage</title>
+  <link rel="shortcut icon" href="../Images/Brainy voyage LOGO.jpg" type="image/x-icon">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8274959934956724" crossorigin="anonymous"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --background-dark: #121212;
+      --primary-color: #FFDD40;
+      --secondary-color: #1DBF73;
+      --text-color: #EAEAEA;
+      --card-bg: rgba(255, 255, 255, 0.1);
+      --glow: rgba(255, 221, 64, 0.8);
+      --background-color: #203141;
+      --background-color-deep: #142231;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--background-color), var(--background-color-deep));
+      color: var(--text-color);
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 10px var(--glow);
+    }
+
+    .company {
+      font-size: 1.3rem;
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .section {
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary-color);
+      border-radius: 3px;
+    }
+
+    .section p, .section ul {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.8rem;
+    }
+
+    .section strong {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .section ul {
+      padding-left: 1.5rem;
+    }
+
+    .section li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .section li::before {
+      content: '•';
+      color: var(--secondary-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    .apply-btn {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(45deg, var(--secondary-color), #17a362);
+      color: white;
+      border: none;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(29, 191, 115, 0.3);
+      text-align: center;
+      width: 100%;
+      max-width: 250px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .apply-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(29, 191, 115, 0.4);
+      background: linear-gradient(45deg, #17a362, var(--secondary-color));
+    }
+
+    .apply-btn:active {
+      transform: translateY(1px);
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-item {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--secondary-color);
+    }
+
+    .meta-item strong {
+      display: block;
+      color: var(--primary-color);
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .meta-item span {
+      font-size: 1.1rem;
+    }
+
+    /* Ad Containers */
+    .ad-container {
+      width: 100%;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .ad-container.top-ad {
+      margin-bottom: 3rem;
+    }
+
+    .ad-container.bottom-ad {
+      margin-top: 3rem;
+    }
+
+    .ad-label {
+      display: block;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .company {
+        font-size: 1.1rem;
+      }
+
+      .section h2 {
+        font-size: 1.2rem;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .apply-btn {
+        max-width: 100%;
+        padding: 0.8rem;
+      }
+
+      .ad-container {
+        margin: 1.5rem 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        padding: 1.2rem;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .ad-container {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Ad Container -->
+  <div class="ad-container top-ad">
+    <span class="ad-label">Advertisement</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <div class="container" id="jobContainer">
+    <h1 id="jobTitle">Loading...</h1>
+    <div class="company" id="companyName"></div>
+
+    <!-- Middle Ad Container (after job meta) -->
+    <div class="ad-container">
+      <span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <strong>Location</strong>
+        <span id="location"></span>
+      </div>
+      <div class="meta-item">
+        <strong>Salary</strong>
+        <span id="salary"></span>
+      </div>
+      <div class="meta-item">
+        <strong>Expires On</strong>
+        <span id="expires"></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>About Company</h2>
+      <p id="aboutData"></p>
+    </div>
+
+    <!-- Another Middle Ad Container (after about section) -->
+    <div class="ad-container">
+      <span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <div class="section">
+      <h2>Eligibility</h2>
+      <p id="eligibility"></p>
+    </div>
+
+    <div class="section">
+      <h2>Roles & Responsibilities</h2>
+      <ul id="rolesList"></ul>
+    </div>
+
+    <a class="apply-btn" id="applyBtn" href="#" target="_blank">Apply Now</a>
+  </div>
+
+  <!-- Bottom Ad Container -->
+  <div class="ad-container bottom-ad">
+    <span class="ad-label">Advertisement</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <script>
+    const jobId = window.location.pathname.split("/").pop();
+
+    fetch(`/api/job/${jobId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          document.getElementById("jobContainer").innerHTML = `
+            <h2 style="color: var(--primary-color); text-align: center; padding: 2rem;">
+              Job not found
+            </h2>`;
+          return;
+        }
+
+        document.getElementById("jobTitle").innerText = data.data.role;
+        document.getElementById("companyName").innerText = data.company;
+        document.getElementById("location").innerText = data.data.location;
+        document.getElementById("salary").innerText = data.data.salary;
+
+        const expiryDate = new Date(data.data.expires);
+        document.getElementById("expires").innerText = expiryDate.toDateString();
+
+        document.getElementById("aboutData").innerText = data.aboutData;
+        document.getElementById("eligibility").innerText = data.eligility;
+
+        const rolesList = document.getElementById("rolesList");
+        data.roles.split("\n").forEach(role => {
+          if (role.trim()) {
+            const li = document.createElement("li");
+            li.innerText = role;
+            rolesList.appendChild(li);
+          }
+        });
+
+        document.getElementById("applyBtn").href = data.link;
+      })
+      .catch(err => {
+        document.getElementById("jobContainer").innerHTML = `
+          <h2 style="color: var(--primary-color); text-align: center; padding: 2rem;">
+            Error loading job data
+          </h2>`;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

@@ -650,32 +650,81 @@ async function fetchDataFromMongo() {
         item.style.marginBottom = "8px";
 
         // Add click listener
-        item.addEventListener("click", () => {
-            console.log(`You clicked on: ${key}`);
-            const pdfs = data[key]; // Get the array of PDFs for this category
+        // item.addEventListener("click", () => {
+        //     console.log(`You clicked on: ${key}`);
+        //     const pdfs = data[key]; // Get the array of PDFs for this category
             
-            document.querySelector('.rightMainContainer').classList.remove('hidden');
-            linksRight.textContent = '';
-            console.log(`PDFs available in ${key}:`);
-            pdfs.forEach(pdf => {
-                console.log(pdf);
+        //     document.querySelector('.rightMainContainer').classList.remove('hidden');
+        //     linksRight.textContent = '';
+        //     console.log(`PDFs available in ${key}:`);
+        //     pdfs.forEach(pdf => {
+        //         console.log(pdf);
 
                 
-                const a = document.createElement('a');
-                a.className = 'rightLinks';
-                a.textContent = pdf.name;
-                a.href = pdf.url;
-                linksRight.appendChild(a);
-                const br = document.createElement('br');
-                linksRight.appendChild(br);
-            });
+        //         const a = document.createElement('a');
+        //         a.className = 'rightLinks';
+        //         a.textContent = pdf.name;
+        //         a.href = pdf.url;
+        //         linksRight.appendChild(a);
+        //         const br = document.createElement('br');
+        //         linksRight.appendChild(br);
+        //     });
 
 
+        // });
+
+        item.addEventListener("click", () => {
+            const pdfs = data[key];
+            
+            if (window.innerWidth <= 1024) {
+                // Show modal for small/medium screens
+                showPdfModal(key, pdfs);
+            } else {
+                // Show sidebar for large screens
+                document.querySelector('.rightMainContainer').classList.remove('hidden');
+                linksRight.textContent = '';
+                
+                pdfs.forEach(pdf => {
+                    const a = document.createElement('a');
+                    a.className = 'rightLinks';
+                    a.textContent = pdf.name;
+                    a.href = pdf.url;
+                    a.target = '_blank';
+                    linksRight.appendChild(a);
+                    const br = document.createElement('br');
+                    linksRight.appendChild(br);
+                });
+            }
         });
 
         fileContainer.appendChild(item);
     });
 }
+
+
+function showPdfModal(categoryName, pdfs) {
+    const modal = document.getElementById('pdfModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalLinks = document.getElementById('modalLinks');
+    
+    modalTitle.textContent = `PDFs in ${categoryName}`;
+    modalLinks.innerHTML = '';
+    
+    pdfs.forEach(pdf => {
+        const a = document.createElement('a');
+        a.textContent = pdf.name;
+        a.href = pdf.url;
+        a.target = '_blank';
+        modalLinks.appendChild(a);
+    });
+    
+    modal.style.display = 'block';
+}
+
+// Add modal close functionality
+document.querySelector('.close-modal').addEventListener('click', function() {
+    document.getElementById('pdfModal').style.display = 'none';
+});
 
 
 async function fetchAllFiles(){

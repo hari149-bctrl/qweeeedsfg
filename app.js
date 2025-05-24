@@ -10,8 +10,6 @@ const path = require('path');
 const crypto = require('crypto');
 const axios = require('axios');
 const cors = require('cors');
-const { type } = require('os');
-const { required } = require('nodemon/lib/config');
 
 // Initialize Express
 const app = express();
@@ -68,79 +66,40 @@ const folderSchema = new mongoose.Schema({
   folderName: { type: String, required: true, index: true, unique: true },
 });
 
-const companySchema = new mongoose.Schema({
-  companyName : {type: String, required: true, index:true, unique:true},
-  aboutData: {type: String, required:true},
-})
-
 const jobSchema = new mongoose.Schema({
-  id: {type: String, required:true, unique:true, index:true},
-  company: {
-    type: String,
-    required: true,
-    index: true,
-  },
+  id: { type: String, required: true, unique: true },
+  company: { type: String, required: true },
   category: {
-    fresher: {
-      type: Boolean,
-      default: false
-    },
-    experienced: {
-      type: Boolean,
-      default: false
-    },
-    student: {
-      type: Boolean,
-      default: false
-    },
-    ug: {
-      type: Boolean,
-      default: false
-    },
-    pg: {
-      type: Boolean,
-      default: false
-    },
-    internship: {
-      type: Boolean,
-      default: false
-    }
+    internship: { type: Boolean, default: false },
+    fresher: { type: Boolean, default: false },
+    experienced: { type: Boolean, default: false },
+    student: { type: Boolean, default: false },
+    ug: { type: Boolean, default: false },
+    pg: { type: Boolean, default: false }
   },
-  data:{
-    role: {
-      type: String,
-      required: true
-    },
-    salary: {
-      type: String,
-      required: true
-    },
-    location: {
-      type: String,
-      required: true
-    },
-    expires: {
-      type: Date,
-      required: true
-    }
+  data: {
+    role: { type: String, required: true },
+    salary: { type: String, required: true },
+    location: { type: String, required: true },
+    expires: { type: Date, required: true }
   },
-  eligility: {
-    type: String,
-    required: true
-  },
-  roles: {
-    type: String,
-    required: true
-  },
-  link: {
-    type: String,
-    required: true
-  },
-})
-jobSchema.index({ "data.expires": 1 }, { expireAfterSeconds: 0 });
+  aboutData: { type: String },
+  eligility: { type: String },
+  roles: { type: String },
+  link: { type: String },
+});
+
+const companySchema = new mongoose.Schema({
+  companyName: { type: String, required: true, unique: true },
+  aboutData: { type: String },
+  companyLogo: {type: String},
+  jobsCount: { type: Number, default: 1 },
+});
+
 // Models
-const jobsData = mongoose.model('jobsData', jobSchema);
-const companyData = mongoose.model('companyData', companySchema);
+jobSchema.index({ "data.expires": 1 }, { expireAfterSeconds: 0 });
+const Job = mongoose.model('Job', jobSchema);
+const Company = mongoose.model('Company', companySchema);
 const User = mongoose.model('User', userSchema);
 const fileStorage = mongoose.model('fileStorage', filesSchema);
 const folderStorage = mongoose.model('folderStorage', folderSchema);
@@ -273,7 +232,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.get('/dashboard/', (req, res) => {
+app.get('/admin/', (req, res) => {
   if (!req.session.user) return res.redirect('/login');
   sendTelegramNotification("Logged into the dashboard for Brainy Voyage");
   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
@@ -348,94 +307,134 @@ app.get('/folder/files/', async (req, res) => {
 });
 
 
+// Get all companies (matches UI's /hire/companies/)
+app.get('/hire/companies', async (req, res) => {
+  try {
+    const companies = await Company.find().sort({ companyName: 1 });
+    res.json(companies); // Direct array response matches UI expectation
+  } catch (err) {
+    console.error("Error fetching companies:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
+// Get jobs by company (POST to match your UI)
+app.post('/hire/jobs', async (req, res) => {
+  try {
+    const { companyName } = req.body;
+    const jobs = await Job.find({ company: companyName }).sort({ createdAt: -1 });
+    res.json(jobs); // Direct array response
+  } catch (err) {
+    console.error("Error fetching company jobs:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
+// Get all jobs (for when no company filter)
+app.get('/hire/data', async (req, res) => {
+  try {
+    const jobs = await Job.find().sort({ createdAt: -1 });
+    res.json(jobs); // Direct array response
+  } catch (err) {
+    console.error("Error fetching jobs:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
-
-
-
-// For uploading the jobs and getting the jobs from/to mongo
-
-app.post('/jobs/upload', async(req,res) => {
-  try{
-
-    console.log('Received data:', req.body);
-    const dataFromUI = req.body;
-    if (!dataFromUI) {
+// Create/Update job (matches UI's /jobs/upload)
+app.post('/jobs/upload', async (req, res) => {
+  try {
+    const jobData = req.body;
+    
+    // Validate required fields
+    if (!jobData.id || !jobData.company || !jobData.data?.role) {
       return res.status(400).json({ success: false, message: "Missing required fields" });
     }
-  
-    const newJob = new jobsData({
-      id: dataFromUI.ID,
-      company: dataFromUI.data.company,
-      category: {
-        fresher: dataFromUI.category.fresher,
-        experienced: dataFromUI.category.experienced,
-        student: dataFromUI.category.student,
-        ug: dataFromUI.category.ug,
-        pg: dataFromUI.category.pg,
-        internship: dataFromUI.category.internship
-      },
-      data: {
-        role: dataFromUI.data.role,
-        salary: dataFromUI.data.salary,
-        location: dataFromUI.data.location,
-        expires: dataFromUI.data.expires
-      },
-      eligility: dataFromUI.eligility,
-      roles: dataFromUI.roles,
-      link: dataFromUI.link
-    })
 
-    await newJob.save();
-    const existingCompany = await companyData.findOne({ companyName: dataFromUI.data.company });
+    // Upsert job
+    const job = await Job.findOneAndUpdate(
+      { id: jobData.id },
+      jobData,
+      { upsert: true, new: true }
+    );
 
-    if (existingCompany) {
-      console.log('Company exists:', existingCompany);
-    } else {
-      const companyInfo = new companyData({
-        companyName : dataFromUI.data.company,
-        aboutData: dataFromUI.aboutData
-      });
-      await companyInfo.save();
-    }
-  
-    
-    
+    // Update company
+    await Company.findOneAndUpdate(
+      { companyName: jobData.company },
+      { $set: { aboutData: jobData.aboutData }, $inc: { jobsCount: 1 } },
+      { upsert: true }
+    );
 
-    console.log("Data Saved to mongoDB");
-    res.status(200).json({success: true, message: "Job data saved to mongoDB"})
-  }catch(err){
-    console.log("error saving the job data", err)
-  }
-
-})
-
-
-
-
-
-
-// API route for fetching the job data
-let cacheJobs = [];
-app.get('/hire/data/', async (req, res) => {
-  try {
-    const jobs = await jobsData.find({});
-    console.log(jobs)
-    if (!jobs) {
-      return res.status(404).json({ message: "No job data found" });
-    }
-    // cacheJobs = jobs;
-    console.log("Fetched job data:", jobs);
-    res.json(jobs);
-
+    res.json({ success: true, job });
   } catch (err) {
-    console.error("Error while fetching the jobs data:", err);
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error("Error saving job:", err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+// Get single job (for editing)
+app.get('/hire/jobs/:id', async (req, res) => {
+  try {
+    const job = await Job.findOne({ id: req.params.id });
+    if (!job) return res.status(404).json({ message: "Job not found" });
+    res.json(job);
+  } catch (err) {
+    console.error("Error fetching job:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Delete job
+app.delete('/hire/jobs/:id', async (req, res) => {
+  try {
+    const job = await Job.findOneAndDelete({ id: req.params.id });
+    if (!job) return res.status(404).json({ message: "Job not found" });
+
+    // Decrement company's job count
+    await Company.findOneAndUpdate(
+      { companyName: job.company },
+      { $inc: { jobsCount: -1 } }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Error deleting job:", err);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
 
+
+
+
+// For getting the job in the user point of view
+app.get('/hiring/:id', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'job', 'index.html'));
+});
+
+
+app.get('/api/job/:id', async (req, res) => {
+  const job = await Job.findOne({ id: req.params.id })
+  if (!job) {
+    return res.status(404).json({ error: 'Job not found' });
+  }
+  res.json(job);
+});
+
+
+
+
+
+
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    success: false,
+    message: "Something went wrong!"
+  });
+});
 
 
 
@@ -462,6 +461,22 @@ async function sendTelegramNotification(message) {
     console.error('Error sending message to Telegram:', error);
   }
 }
+const keepAlive = () => {
+  setInterval(async () => {
+    try {
+      await axios.get(`https://${process.env.DOMAIN || 'localhost:3000'}/ping`);
+      let msgStatus = `Ping received at ${new Date().toISOString()} From code`;
+      await sendTelegramNotification(msgStatus);
+      console.log('🔄 Keepalive ping sent');
+    } catch (err) {
+      const errorMsg = `❌ Keepalive failed: ${err.message}`;
+      console.error(errorMsg);
+      await sendTelegramNotification(errorMsg);
+    }
+  }, 4.5 * 60 * 1000); // 4.5 minutes
+};
+
+
 
 // Health Check
 app.get('/ping', (req, res) => {
@@ -475,6 +490,9 @@ app.get('/ping', (req, res) => {
 
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+const server = app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  if (process.env.NODE_ENV === 'production') {
+    keepAlive(); // Start keepalive pings
+  }
 });
