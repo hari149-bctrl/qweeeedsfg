@@ -204,7 +204,7 @@ app.get('/api/pdfs', async (req, res) => {
 
 // Routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public','home', 'index.html'));
 });
 
 // app.get('/login', (req, res) => {
