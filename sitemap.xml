@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+  <loc>https://brainyvoyage.com/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/home/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/roadmaps/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/hiring/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/resume/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/materials/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/privacy-policy/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/terms-conditions/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/refund-policy/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/roadmaps/html-css-roadmap/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/roadmaps/jsroadmap/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/roadmaps/fullstackroadmap/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://brainyvoyage.com/detailedInfo/html/</loc>
+  <lastmod>2025-05-24T15:20:19+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>
